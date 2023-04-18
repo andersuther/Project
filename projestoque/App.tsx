@@ -1,12 +1,13 @@
 import React from 'react';
-import { ImageBackground, Text, View } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import Routes from './src/Routes';
+import { StatusBar } from 'react-native';
 
-// import { Container } from './styles';
-
-const projestoque: React.FC = () => {
-  return <View style={{flex:1}}>
-    <Text>Projeto Estoque</Text>
-  </View>;
+export default function App() {
+ return (
+   <NavigationContainer>
+    <StatusBar backgroundColor="#131313"/>
+    <Routes/>
+    </NavigationContainer>
+  );
 }
-
-export default projestoque;
