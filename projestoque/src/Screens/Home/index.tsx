@@ -49,8 +49,10 @@ export default function Home() {
         </Styled.ViewInput>
         <BotaoHome 
         title={'Login'} 
-        onPress={()=> navigation.navigate('Register')}
-        color='#00ff6a'/>
+        onPress={()=> navigation.navigate('Login')}
+        color='#00ff6a'
+        width='100%'
+        height='35px'/>
 
       </ImageBackground>
     </Styled.Container>

@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {ImageBackground, Text,View} from 'react-native';
 import { TextInput , Button} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Register() {
 
     const img1 = '../../images/wites.jpg';
     const [text3, onChangeText3] = React.useState('');
     const [text4, onChangeText4] = React.useState('');
+    const navigation = useNavigation();
 
   return (
    <View style={{flex:1}}>
@@ -42,6 +44,7 @@ export default function Register() {
 
       <Button
       title='Register'
+      onPress={()=> navigation.navigate('Teste')}
       />
         </View>
 
