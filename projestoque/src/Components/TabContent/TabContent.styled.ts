@@ -1,20 +1,19 @@
 import styled from 'styled-components/native';
 
 export const ContainerTab = styled.View`
-  height: 190px;
-  width: 98%;
+  height: 195px;
+  width: 100%;
   justify-content: center;
   align-self: center;
 `;
 
 export const TabView = styled.View`
   width: 90%;
-  height: 115%;
+  height: 100%;
   background-color: #fff;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
   border-top-right-radius: 15px;
-  margin-top: -1px;
   align-self: center;
 `;
 
@@ -26,21 +25,21 @@ export const Row = styled.View`
   height: 30%;
 `;
 
-export const TabButon = styled.TouchableOpacity<IBasic>`
-  width: 40%;
+export const TabButon = styled.TouchableOpacity<any>`
+  width: 38%;
   border-top-right-radius: 15px;
   margin-right: 1%;
   border-top-left-radius: 15px;
-  background-color: ${(props) => props.color || '#fff'};
+  background-color: ${props => props.color || '#fff'};
   justify-content: center;
   align-items: center;
 `;
 
-export const CustomText = styled.Text<IBasic>`
-  font-size: ${(props) => props.size || '16px'};
-  font-weight: ${(props) => props.weight || 700};
+export const CustomText = styled.Text<any>`
+  font-size: ${props => props.size || '16px'};
+  font-weight: ${props => props.weight || 700};
   right: 5%;
-  color: ${(props) => props.color || '#333'};
+  color: ${props => props.color || '#333'};
 `;
 
 export const TabContent = styled.View`
@@ -59,7 +58,9 @@ export const ContainerForget = styled.View`
 `;
 
 export const ContainerInput = styled.View`
-  width: 85%;
-  height: 65%;
+  width: 100%;
+  height: 85%;
   align-items: center;
+  /* background-color: blue; */
+  margin-bottom: 50px;
 `;

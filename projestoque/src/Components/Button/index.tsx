@@ -1,7 +1,6 @@
 import React from 'react';
 import {Text} from 'react-native';
 import * as Style from './styles';
-
 interface Types{
   title?: string;
   color?: string;

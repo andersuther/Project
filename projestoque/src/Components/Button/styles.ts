@@ -22,6 +22,7 @@ width: ${(props) => props.width || '100%'};
 `;
 
 export const TxtButton = styled.Text`
+
 font-size: 20px;
 color:  ${(props) => props.color || '#fff'};
 align-items: center;

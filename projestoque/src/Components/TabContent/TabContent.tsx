@@ -1,25 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text} from 'react-native';
 import * as Styled from './TabContent.styled';
-import { ITab } from './TabContent.types';
+import {ITab} from './TabContent.types';
+import {TextInput} from '../textInput/TextInput';
 
 export const TabContent: React.FC<ITab> = ({
   titleTab1 = 'tab1',
   titleTab2 = 'tab2',
   titleColorSelect = '#1C3A6D',
-  titlwColorUnselect = '#fff',
+  titleColorUnselect = '#fff',
   tabColorSelect = '#fff',
   tabColorUnselect = '#646464',
   content1,
   content2,
-  currentTab ,
+  currentTab,
   initialTab = 1,
-
 }) => {
   const [tabSelect, setTabSelect] = useState();
-  const switchTab = (tabId) => {
+  const switchTab = tabId => {
     setTabSelect(tabId);
-    
   };
   useEffect(() => {
     switchTab(initialTab);
@@ -29,21 +28,17 @@ export const TabContent: React.FC<ITab> = ({
       <Styled.Row>
         <Styled.TabButon
           onPress={() => switchTab(1)}
-          color={tabSelect === 1 ? tabColorSelect : tabColorUnselect}
-        >
+          color={tabSelect === 1 ? tabColorSelect : tabColorUnselect}>
           <Styled.CustomText
-            color={tabSelect === 1 ? titleColorSelect : titlwColorUnselect}
-          >
+            color={tabSelect === 1 ? titleColorSelect : titleColorUnselect}>
             {titleTab1}
           </Styled.CustomText>
         </Styled.TabButon>
         <Styled.TabButon
           color={tabSelect === 2 ? tabColorSelect : tabColorUnselect}
-          onPress={() => switchTab(2)}
-        >
+          onPress={() => switchTab(2)}>
           <Styled.CustomText
-            color={tabSelect === 2 ? titleColorSelect : titlwColorUnselect}
-          >
+            color={tabSelect === 2 ? titleColorSelect : titleColorUnselect}>
             {titleTab2}
           </Styled.CustomText>
         </Styled.TabButon>

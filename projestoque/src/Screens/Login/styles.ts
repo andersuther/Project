@@ -1,44 +1,29 @@
-import styled from "styled-components/native";
+import styled from 'styled-components/native';
 
-export const Container= styled.View`
-flex:1;
-justify-content: center;
+export const Container = styled.View`
+  flex: 1;
+  /* justify-content: center; */
 `;
 
 export const Viewlogo = styled.View`
-align-items: center;
-height: 53%;
-width:100%;
+  align-items: center;
+  height: 52%;
+  width: 100%;
 `;
 
 export const Viewtab = styled.View`
-width:100%;
-height:30%;
-justify-Content: center;
-align-items: center;
+  align-items: center;
+  flex-direction: row;
+  height: 30%;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 1%;
+  position: relative;
 `;
 
 export const ViewButton = styled.View`
-width:100%;
-margin-Top:40;
-justify-Content:center;
-align-items:center;
+  width: 100%;
+  margin-top: 16%;
+  justify-content: flex-start;
+  align-items: center;
 `;
-
-// export const Viewt = styled.View`
-// justify-content:center;
-// background-color:white;
-// width: 100%;
-// /* height:20%; */
-// margin: 5%;
-// border-radius: 25px;
-// `;
-
-// export const Inputt = styled.TextInput`
-// height: 40px;
-// font-size: 20px;
-// font-weight: 400;
-// padding: 10px;
-// margin: 3%;
-// color: #fff;
-// `;
