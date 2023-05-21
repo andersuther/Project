@@ -1,10 +1,12 @@
-import React from 'react';
-import {View, Text, ScrollView, Image} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
 import * as Styled from './styles';
+import RadioIcon from 'react-native-vector-icons/dist/MaterialCommunityIcons';
+import {Modal} from 'native-base';
 
-// import { Container } from './styles';
 const Dashboard: React.FC = () => {
   const img9 = '../../images/tttt.png';
+  const [modalVisible, setModalVisible] = useState(false);
 
   const meuArray = [
     {
@@ -52,7 +54,9 @@ const Dashboard: React.FC = () => {
   ];
 
   const t = meuArray.filter(arr => arr.id == '4');
-  console.log(t.length);
+  const tamanho = 350;
+  const tamanhoIcon = 90;
+  const tamanhoPorcent = (tamanhoIcon * tamanho) / 100;
 
   return (
     <Styled.Container>
@@ -64,8 +68,100 @@ const Dashboard: React.FC = () => {
         <Styled.DataBt>
           <Text>Data</Text>
         </Styled.DataBt>
-        <Styled.StatusBt>
+        <Styled.StatusBt onPress={() => setModalVisible(true)}>
           <Text>Status</Text>
+          <Modal isOpen={modalVisible} onClose={() => setModalVisible(false)}>
+            <View
+              style={{
+                height: '90%',
+                width: '85%',
+                backgroundColor: '#81a1a7',
+                borderRadius: 2,
+                alignSelf: 'flex-start',
+                alignItems: 'flex-end',
+                paddingRight: '2%',
+              }}>
+              <TouchableOpacity
+                onPress={() => setModalVisible(false)}
+                style={{
+                  width: tamanho,
+                  height: tamanho,
+                  borderRadius: 50,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <View
+                  style={{
+                    position: 'absolute',
+                    backgroundColor: '#030303',
+                    width: '52%',
+                    height: '40%',
+                    zIndex: -2,
+                    borderRadius: tamanho,
+                  }}></View>
+                <View
+                  style={{
+                    position: 'absolute',
+                    backgroundColor: '#9e1616',
+                    width: '10%',
+                    height: '10%',
+                    zIndex: -1,
+                    right: '58%',
+                    top: '50%',
+                    borderRadius: tamanho,
+                  }}></View>
+                <View
+                  style={{
+                    position: 'absolute',
+                    backgroundColor: '#ffffff',
+                    width: '17%',
+                    height: '19%',
+                    zIndex: -2,
+                    right: '55%',
+                    top: '45%',
+                    borderRadius: tamanho,
+                  }}></View>
+                <View
+                  style={{
+                    position: 'absolute',
+                    backgroundColor: '#9e1616',
+                    width: '10%',
+                    height: '10%',
+                    zIndex: -1,
+                    left: '58%',
+                    top: '50%',
+                    borderRadius: tamanho,
+                  }}></View>
+                <View
+                  style={{
+                    position: 'absolute',
+                    backgroundColor: '#ffffff',
+                    width: '17%',
+                    height: '19%',
+                    zIndex: -2,
+                    left: '55%',
+                    top: '45%',
+                    borderRadius: tamanho,
+                  }}></View>
+                <View
+                  style={{
+                    position: 'absolute',
+                    backgroundColor: '#fdf3f3',
+                    width: '20%',
+                    height: '10%',
+                    zIndex: -1,
+                    left: '40%',
+                    bottom: '20%',
+                    borderRadius: tamanho,
+                  }}></View>
+                <RadioIcon
+                  name="alien"
+                  size={tamanhoPorcent}
+                  color={'#3dd41e'}
+                />
+              </TouchableOpacity>
+            </View>
+          </Modal>
         </Styled.StatusBt>
       </Styled.ViewBts>
 
