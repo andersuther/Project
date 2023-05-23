@@ -4,6 +4,12 @@ import Routes from './src/Routes';
 import {StatusBar} from 'react-native';
 import {NativeBaseProvider} from 'native-base';
 
+if (__DEV__) {
+  import('./src/config/reactotronConfig').then(() =>
+    console.tron.log('Reactotron Initialized'),
+  );
+}
+
 export default function App() {
   return (
     <NavigationContainer>

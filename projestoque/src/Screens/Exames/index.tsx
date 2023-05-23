@@ -3,6 +3,8 @@ import {View, Text, TouchableOpacity, Image} from 'react-native';
 import * as Styled from './styles';
 import RadioIcon from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 import {Modal} from 'native-base';
+import Icon from 'react-native-vector-icons/dist/Ionicons';
+import DatePicker from 'react-native-date-picker';
 
 const Dashboard: React.FC = () => {
   const img9 = '../../images/tttt.png';
@@ -53,7 +55,9 @@ const Dashboard: React.FC = () => {
     },
   ];
 
-  const t = meuArray.filter(arr => arr.id == '4');
+  const [date, setDate] = useState(new Date());
+  const [open, setOpen] = useState(false);
+  //const t = meuArray.filter(arr => arr.id == '4');
   const tamanho = 350;
   const tamanhoIcon = 90;
   const tamanhoPorcent = (tamanhoIcon * tamanho) / 100;
@@ -66,16 +70,40 @@ const Dashboard: React.FC = () => {
 
       <Styled.ViewBts>
         <Styled.DataBt>
+          <TouchableOpacity onPress={() => setOpen(true)}>
+            <Icon name="calendar" size={19} color="#000" />
+          </TouchableOpacity>
+          <DatePicker
+            modal
+            minimumDate={new Date('2009-01-31')}
+            maximumDate={new Date('2050-12-31')}
+            mode="date"
+            theme="auto"
+            title={'Exames por data'}
+            open={open}
+            date={date}
+            onConfirm={date => {
+              setOpen(false);
+              setDate(date);
+            }}
+            onCancel={() => {
+              setOpen(false);
+            }}
+          />
           <Text>Data</Text>
         </Styled.DataBt>
-        <Styled.StatusBt onPress={() => setModalVisible(true)}>
+
+        <Styled.StatusBt>
           <Text>Status</Text>
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
+            <Icon name="caret-down" size={19} color="#000" />
+          </TouchableOpacity>
           <Modal isOpen={modalVisible} onClose={() => setModalVisible(false)}>
             <View
               style={{
                 height: '90%',
                 width: '85%',
-                backgroundColor: '#81a1a7',
+                backgroundColor: '#be2',
                 borderRadius: 2,
                 alignSelf: 'flex-start',
                 alignItems: 'flex-end',
@@ -84,81 +112,13 @@ const Dashboard: React.FC = () => {
               <TouchableOpacity
                 onPress={() => setModalVisible(false)}
                 style={{
-                  width: tamanho,
-                  height: tamanho,
+                  width: 50,
+                  height: 50,
                   borderRadius: 50,
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}>
-                <View
-                  style={{
-                    position: 'absolute',
-                    backgroundColor: '#030303',
-                    width: '52%',
-                    height: '40%',
-                    zIndex: -2,
-                    borderRadius: tamanho,
-                  }}></View>
-                <View
-                  style={{
-                    position: 'absolute',
-                    backgroundColor: '#9e1616',
-                    width: '10%',
-                    height: '10%',
-                    zIndex: -1,
-                    right: '58%',
-                    top: '50%',
-                    borderRadius: tamanho,
-                  }}></View>
-                <View
-                  style={{
-                    position: 'absolute',
-                    backgroundColor: '#ffffff',
-                    width: '17%',
-                    height: '19%',
-                    zIndex: -2,
-                    right: '55%',
-                    top: '45%',
-                    borderRadius: tamanho,
-                  }}></View>
-                <View
-                  style={{
-                    position: 'absolute',
-                    backgroundColor: '#9e1616',
-                    width: '10%',
-                    height: '10%',
-                    zIndex: -1,
-                    left: '58%',
-                    top: '50%',
-                    borderRadius: tamanho,
-                  }}></View>
-                <View
-                  style={{
-                    position: 'absolute',
-                    backgroundColor: '#ffffff',
-                    width: '17%',
-                    height: '19%',
-                    zIndex: -2,
-                    left: '55%',
-                    top: '45%',
-                    borderRadius: tamanho,
-                  }}></View>
-                <View
-                  style={{
-                    position: 'absolute',
-                    backgroundColor: '#fdf3f3',
-                    width: '20%',
-                    height: '10%',
-                    zIndex: -1,
-                    left: '40%',
-                    bottom: '20%',
-                    borderRadius: tamanho,
-                  }}></View>
-                <RadioIcon
-                  name="alien"
-                  size={tamanhoPorcent}
-                  color={'#3dd41e'}
-                />
+                <RadioIcon name="close" size={25} color={'#000'} />
               </TouchableOpacity>
             </View>
           </Modal>

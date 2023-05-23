@@ -63,24 +63,27 @@ export const ViewBts = styled.View`
   margin-bottom: 20px;
 `;
 
-export const DataBt = styled.TouchableOpacity`
+export const DataBt = styled.View`
   align-items: center;
-  justify-content: center;
-  width: 70px;
+  justify-content: space-around;
+  flex-direction: row;
+  width: 110px;
   height: 30px;
   border-color: gray;
   border-width: 1px;
   border-radius: 8px;
+  padding-right: 15px;
 `;
-export const StatusBt = styled.TouchableOpacity`
-  width: 150px;
+export const StatusBt = styled.View`
+  width: 140px;
   height: 30px;
   border-color: gray;
   border-width: 1px;
   border-radius: 8px;
-  align-items: flex-start;
-  justify-content: center;
-  padding-left: 10px;
+  align-items: center;
+  justify-content: space-around;
+  padding-right: 15px;
+  flex-direction: row;
 `;
 export const Scroll = styled.ScrollView`
   flex: 1;
