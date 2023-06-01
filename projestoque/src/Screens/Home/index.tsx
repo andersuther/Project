@@ -1,21 +1,12 @@
-import React, {useState} from 'react';
-import {
-  Text,
-  ImageBackground,
-  TextInput,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-  Touchable,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {ImageBackground, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {BotaoHome} from '../../Components/Button/index';
 import * as Styled from './styles';
 import Icone from 'react-native-vector-icons/dist/Ionicons';
 import RadioIcon from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 import {Radio, Icon, Modal} from 'native-base';
+import firebase from '../../firebaseConnetion';
 
 export default function Home() {
   const img2 = '../../images/wites.jpg';
@@ -23,12 +14,28 @@ export default function Home() {
   const [text2, onChangeText2] = useState('');
   const [radioValue, setRadioValue] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
+  const [nome, setNome] = useState('Carregue ..');
+  const [idade, setIdade] = useState('Carregando..');
 
   const tamanho = 350;
   const tamanhoIcon = 90;
   const tamanhoPorcent = (tamanhoIcon * tamanho) / 100;
 
   const navigation = useNavigation();
+
+  useEffect(() => {
+    async function dados() {
+      await firebase.database().ref('tipo').set('Teste2');
+      await firebase
+        .database()
+        .ref('usuarios/1/')
+        .on('value', snapshot => {
+          setNome(snapshot.val().nome);
+          setIdade(snapshot.val().idade);
+        });
+    }
+    dados();
+  }, []);
 
   return (
     <Styled.Container>
@@ -125,7 +132,8 @@ export default function Home() {
           <Styled.TextWel>Welcome</Styled.TextWel>
           <Styled.TextSub>
             It is very important to be patient, to be followed by the customer.
-            Until the author is but the price of mourning.
+            Until the author is but the price of mourninlg. {'\n'}
+            {'\n'} Ola {nome} , Idade {idade}
           </Styled.TextSub>
         </Styled.ViewTexts>
 

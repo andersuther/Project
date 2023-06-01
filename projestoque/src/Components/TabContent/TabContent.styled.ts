@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 export const ContainerTab = styled.View`
-  height: 195px;
+  height: 185px;
   width: 100%;
   justify-content: center;
   align-self: center;

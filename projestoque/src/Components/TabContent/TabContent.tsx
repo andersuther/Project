@@ -15,6 +15,7 @@ export const TabContent: React.FC<ITab> = ({
   content2,
   currentTab,
   initialTab = 1,
+  height = '',
 }) => {
   const [tabSelect, setTabSelect] = useState();
   const switchTab = tabId => {

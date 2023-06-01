@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   ImageBackground,
   Image,
@@ -6,6 +6,9 @@ import {
   KeyboardAvoidingView,
   Dimensions,
   Platform,
+  View,
+  Text,
+  TouchableOpacity,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {BotaoHome} from '../../Components/Button/index';
@@ -13,6 +16,10 @@ import * as Styled from './styles';
 import {TabContent} from '../../Components/TabContent/TabContent';
 import {TextInput} from '../../Components/textInput/TextInput';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
+import Reactotron from 'reactotron-react-native';
+import firebase from '../../firebaseConnetion';
+
+import Api from '../../Services/api';
 
 const Login: React.FC = () => {
   const img5 = '../../images/manman.png';
@@ -20,6 +27,8 @@ const Login: React.FC = () => {
 
   const {navigate, goBack} = useNavigation<any>();
   const {height} = Dimensions.get('window');
+  const [user, SetUser] = useState('');
+  const [password, SetPassword] = useState('');
 
   return (
     <Styled.Container>
@@ -41,10 +50,14 @@ const Login: React.FC = () => {
               content1={
                 <>
                   <Icon name="person-sharp" size={25} color="#000" />
-                  <TextInput placeholder="User" />
+                  <TextInput
+                    onChangeText={value => SetUser(value)}
+                    placeholder="Usuario"
+                  />
                   <TextInput
                     secureTextEntry={Icon}
-                    placeholder="Password"
+                    onChangeText={value => SetPassword(value)}
+                    placeholder="Senha"
                     heigth={50}
                     fontSize={25}
                     padL={12}
@@ -54,10 +67,14 @@ const Login: React.FC = () => {
               content2={
                 <>
                   <Icon name="briefcase" size={25} color="#000" />
-                  <TextInput placeholder="CNPJ/CPF" />
+                  <TextInput
+                    onChangeText={value => SetUser(value)}
+                    placeholder="CNPJ/CPF"
+                  />
                   <TextInput
                     secureTextEntry={Icon}
-                    placeholder="Password"
+                    onChangeText={value => SetPassword(value)}
+                    placeholder="Senha"
                     heigth={50}
                     fontSize={25}
                   />
@@ -73,6 +90,12 @@ const Login: React.FC = () => {
               title={'Entrar'}
               color={'#000'}
             />
+
+            <Styled.ViewBtConta>
+              <TouchableOpacity onPress={() => navigate('Cadastro')}>
+                <Styled.TxtCrie>Crie sua conta!</Styled.TxtCrie>
+              </TouchableOpacity>
+            </Styled.ViewBtConta>
           </Styled.ViewButton>
         </ImageBackground>
       </KeyboardAvoidingView>
