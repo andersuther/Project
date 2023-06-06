@@ -80,9 +80,13 @@ export default function Cadastro() {
           </Styled.ViewTexts>
 
           <Styled.ViewBtCriar>
-            <TouchableOpacity onPress={() => navigate('Login')}>
-              <Styled.TextSub colortxt={'#000'}>Criar!</Styled.TextSub>
-            </TouchableOpacity>
+            <BotaoHome
+              onPress={() => navigate('Login')}
+              height={'40px'}
+              width={'100%'}
+              title={'Criar!'}
+              color={'#000'}
+            />
           </Styled.ViewBtCriar>
         </ImageBackground>
       </ScrollView>

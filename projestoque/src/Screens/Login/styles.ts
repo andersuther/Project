@@ -29,11 +29,12 @@ export const ViewBtConta = styled.View`
 `;
 
 export const ViewButton = styled.View`
-  height: 50px;
+  /* height: 20%; */
   justify-content: center;
   align-items: center;
-  margin-top: 22%;
+  margin-top: 15%;
   width: 100%;
+  padding-bottom: 10px;
 `;
 export const TxtCrie = styled.Text`
   color: #000;

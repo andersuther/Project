@@ -20,6 +20,7 @@ import Reactotron from 'reactotron-react-native';
 import firebase from '../../firebaseConnetion';
 
 import Api from '../../Services/api';
+import {Row} from 'native-base';
 
 const Login: React.FC = () => {
   const img5 = '../../images/manman.png';
@@ -39,7 +40,7 @@ const Login: React.FC = () => {
           <Styled.Viewlogo>
             <Image
               source={require(img6)}
-              style={{width: '48%', height: '51%'}}
+              style={{width: '48%', height: '53%'}}
             />
           </Styled.Viewlogo>
 
@@ -90,12 +91,19 @@ const Login: React.FC = () => {
               title={'Entrar'}
               color={'#000'}
             />
-
-            <Styled.ViewBtConta>
-              <TouchableOpacity onPress={() => navigate('Cadastro')}>
-                <Styled.TxtCrie>Crie sua conta!</Styled.TxtCrie>
-              </TouchableOpacity>
-            </Styled.ViewBtConta>
+            <BotaoHome
+              Iconame={true}
+              height={'40px'}
+              width={'50%'}
+              title={'Google'}
+              color={'#000'}
+              Flexdir={'row'}
+              pd={'2px'}
+            />
+            <TouchableOpacity onPress={() => navigate('Cadastro')}>
+              <Styled.TxtCrie>Crie sua conta!</Styled.TxtCrie>
+            </TouchableOpacity>
+            <Styled.ViewBtConta></Styled.ViewBtConta>
           </Styled.ViewButton>
         </ImageBackground>
       </KeyboardAvoidingView>

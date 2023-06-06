@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Text} from 'react-native';
-import * as Style from './styles';
+import * as Styled from './styles';
 interface Types {
   title?: string;
   color?: string;
@@ -9,6 +9,9 @@ interface Types {
   bgColor?: string;
   onPress?: () => void;
   navigate?: (screen: string) => string;
+  Iconame?: boolean;
+  Flexdir?: string;
+  pd?: string;
 }
 
 export const BotaoHome: React.FC<Types> = ({
@@ -17,19 +20,24 @@ export const BotaoHome: React.FC<Types> = ({
   onPress,
   height,
   width,
+  pd,
+  Flexdir,
   navigate,
-
-  bdColor,
+  Iconame,
 }) => {
+  const [secure, setSecure] = useState(false);
   return (
-    <Style.ViewBotao width={width}>
-      <Style.Botao
+    <Styled.ViewBotao width={width}>
+      <Styled.Botao
+        Flexdir={Flexdir}
         bgColor={color}
         onPress={onPress}
         height={height}
-        width={width}>
-        <Style.TxtButton>{title}</Style.TxtButton>
-      </Style.Botao>
-    </Style.ViewBotao>
+        width={width}
+        pd={pd}>
+        {Iconame && <Styled.Icon name={'logo-google'} />}
+        <Styled.TxtButton>{title}</Styled.TxtButton>
+      </Styled.Botao>
+    </Styled.ViewBotao>
   );
 };
