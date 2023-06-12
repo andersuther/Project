@@ -36,19 +36,6 @@ export default function Cadastro() {
   const {navigate, goBack} = useNavigation<any>();
   const navigation = useNavigation();
 
-  const camposPreenchidos = user == '' && email == '' && password == '';
-
-  // Se todos os campos estiverem preenchidos, navega para a próxima tela com os dados do perfil
-  // if (camposPreenchidos) {
-  //   const perfil = {
-  //     user,
-  //     email,
-  //     password,
-  //   };
-  // } else {
-  //   alert('Por favor, preencha todos os campos.');
-  // }
-
   return (
     <Styled.Container>
       <ScrollView style={{flex: 1}}>
