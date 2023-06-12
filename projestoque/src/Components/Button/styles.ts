@@ -36,5 +36,6 @@ export const Icon = styled(Icone).attrs(props => ({
   font-size: 20px;
   color: #fff;
   padding-right: 10px;
-  align-self: center;
+  position: absolute;
+  left: 10%;
 `;

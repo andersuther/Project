@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import {Text} from 'react-native';
+import {ActivityIndicator, Text} from 'react-native';
 import * as Styled from './styles';
+import {Spinner} from 'native-base';
 interface Types {
   title?: string;
   color?: string;
@@ -12,6 +13,7 @@ interface Types {
   Iconame?: boolean;
   Flexdir?: string;
   pd?: string;
+  isLoading?: boolean;
 }
 
 export const BotaoHome: React.FC<Types> = ({
@@ -24,6 +26,7 @@ export const BotaoHome: React.FC<Types> = ({
   Flexdir,
   navigate,
   Iconame,
+  isLoading,
 }) => {
   const [secure, setSecure] = useState(false);
   return (
@@ -35,8 +38,12 @@ export const BotaoHome: React.FC<Types> = ({
         height={height}
         width={width}
         pd={pd}>
-        {Iconame && <Styled.Icon name={'logo-google'} />}
-        <Styled.TxtButton>{title}</Styled.TxtButton>
+        {!isLoading && Iconame && <Styled.Icon name={'logo-google'} />}
+        {isLoading ? (
+          <Spinner color={'cyan.500'} />
+        ) : (
+          <Styled.TxtButton>{title}</Styled.TxtButton>
+        )}
       </Styled.Botao>
     </Styled.ViewBotao>
   );

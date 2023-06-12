@@ -21,6 +21,7 @@ import firebase from '../../firebaseConnetion';
 
 import Api from '../../Services/api';
 import {Row} from 'native-base';
+import reactotron from 'reactotron-react-native';
 
 const Login: React.FC = () => {
   const img5 = '../../images/manman.png';
@@ -30,6 +31,15 @@ const Login: React.FC = () => {
   const {height} = Dimensions.get('window');
   const [user, SetUser] = useState('');
   const [password, SetPassword] = useState('');
+  const [loading, setIsLoanding] = useState(false);
+
+  function handlePress() {
+    setIsLoanding(true);
+
+    setTimeout(() => {
+      setIsLoanding(false);
+    }, 2000);
+  }
 
   return (
     <Styled.Container>
@@ -90,8 +100,10 @@ const Login: React.FC = () => {
               width={'50%'}
               title={'Entrar'}
               color={'#000'}
+              // isLoading={loading}
             />
             <BotaoHome
+              onPress={() => handlePress()}
               Iconame={true}
               height={'40px'}
               width={'50%'}
@@ -99,6 +111,7 @@ const Login: React.FC = () => {
               color={'#000'}
               Flexdir={'row'}
               pd={'2px'}
+              isLoading={loading}
             />
             <TouchableOpacity onPress={() => navigate('Cadastro')}>
               <Styled.TxtCrie>Crie sua conta!</Styled.TxtCrie>
