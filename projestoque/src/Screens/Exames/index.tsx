@@ -1,10 +1,17 @@
 import React, {useState} from 'react';
+import {LogBox} from 'react-native';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import * as Styled from './styles';
 import RadioIcon from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 import {Modal} from 'native-base';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 import DatePicker from 'react-native-date-picker';
+
+// Ignore log notification by message
+LogBox.ignoreLogs(['Warning: ...']);
+
+//Ignore all log notifications
+LogBox.ignoreAllLogs();
 
 const Dashboard: React.FC = () => {
   const img9 = '../../images/tttt.png';
@@ -16,7 +23,7 @@ const Dashboard: React.FC = () => {
       nome: 'João',
       data: '01/01/2023',
       tutor: 'Maria',
-      complemento: 'Nenhum',
+      complemento: 'Tosa',
     },
     {
       id: 2,

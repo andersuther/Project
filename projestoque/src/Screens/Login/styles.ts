@@ -15,17 +15,17 @@ export const Viewlogo = styled.View`
 
 export const Viewtab = styled.View`
   align-items: center;
-  flex-direction: row;
-  height: 20%;
+  //flex-direction: row;
+  height: 19%;
   justify-content: center;
   align-items: center;
   padding-bottom: 1%;
-  position: relative;
+  //position: relative;
 `;
 export const ViewBtConta = styled.View`
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  margin-top: 2%;
+  flex-direction: row;
 `;
 
 export const ViewButton = styled.View`
@@ -39,5 +39,10 @@ export const ViewButton = styled.View`
 export const TxtCrie = styled.Text`
   color: #000;
   font-weight: 400;
+  font-size: 20px;
+`;
+export const TxtSair = styled.Text`
+  color: red;
+  //font-weight: 300;
   font-size: 20px;
 `;

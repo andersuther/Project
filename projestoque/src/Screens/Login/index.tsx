@@ -29,16 +29,32 @@ const Login: React.FC = () => {
 
   const {navigate, goBack} = useNavigation<any>();
   const {height} = Dimensions.get('window');
-  const [user, SetUser] = useState('');
-  const [password, SetPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [user, setUser] = useState('');
   const [loading, setIsLoanding] = useState(false);
 
-  function handlePress() {
-    setIsLoanding(true);
+  const navigation = useNavigation();
 
-    setTimeout(() => {
-      setIsLoanding(false);
-    }, 2000);
+  async function logar() {
+    await firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(value => {
+        alert('Bem-vindo:' + value.user.email);
+        setUser(value.user?.email);
+        navigation.navigate('Exames');
+      })
+
+      .catch(error => {
+        alert('Ops algo deu errado!');
+        return;
+      });
+  }
+  async function logout() {
+    await firebase.auth().signOut();
+    setUser('');
+    alert('Deslogado com sucesso!');
   }
 
   return (
@@ -53,21 +69,21 @@ const Login: React.FC = () => {
               style={{width: '48%', height: '53%'}}
             />
           </Styled.Viewlogo>
-
           <Styled.Viewtab>
             <TabContent
               titleTab1={'Cliente'}
               titleTab2={'Logistica'}
               content1={
                 <>
+                  <Text>{user}</Text>
                   <Icon name="person-sharp" size={25} color="#000" />
                   <TextInput
-                    onChangeText={value => SetUser(value)}
+                    onChangeText={value => setEmail(value)}
                     placeholder="Usuario"
                   />
                   <TextInput
                     secureTextEntry={Icon}
-                    onChangeText={value => SetPassword(value)}
+                    onChangeText={value => setPassword(value)}
                     placeholder="Senha"
                     heigth={50}
                     fontSize={25}
@@ -79,12 +95,12 @@ const Login: React.FC = () => {
                 <>
                   <Icon name="briefcase" size={25} color="#000" />
                   <TextInput
-                    onChangeText={value => SetUser(value)}
+                    onChangeText={value => setEmail(value)}
                     placeholder="CNPJ/CPF"
                   />
                   <TextInput
                     secureTextEntry={Icon}
-                    onChangeText={value => SetPassword(value)}
+                    onChangeText={value => setPassword(value)}
                     placeholder="Senha"
                     heigth={50}
                     fontSize={25}
@@ -93,9 +109,10 @@ const Login: React.FC = () => {
               }
             />
           </Styled.Viewtab>
+
           <Styled.ViewButton>
             <BotaoHome
-              onPress={() => navigate('Exames')}
+              onPress={() => logar()}
               height={'40px'}
               width={'50%'}
               title={'Entrar'}
@@ -103,7 +120,7 @@ const Login: React.FC = () => {
               // isLoading={loading}
             />
             <BotaoHome
-              onPress={() => handlePress()}
+              onPress={() => {}}
               Iconame={true}
               height={'40px'}
               width={'50%'}
@@ -113,11 +130,19 @@ const Login: React.FC = () => {
               pd={'2px'}
               isLoading={loading}
             />
+          </Styled.ViewButton>
+          <Styled.ViewBtConta>
             <TouchableOpacity onPress={() => navigate('Cadastro')}>
               <Styled.TxtCrie>Crie sua conta!</Styled.TxtCrie>
             </TouchableOpacity>
-            <Styled.ViewBtConta></Styled.ViewBtConta>
-          </Styled.ViewButton>
+            {user.length > 0 ? (
+              <TouchableOpacity onPress={() => logout()}>
+                <Styled.TxtSair>Sair</Styled.TxtSair>
+              </TouchableOpacity>
+            ) : (
+              <></>
+            )}
+          </Styled.ViewBtConta>
         </ImageBackground>
       </KeyboardAvoidingView>
     </Styled.Container>
