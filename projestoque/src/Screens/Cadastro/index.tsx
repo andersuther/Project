@@ -18,23 +18,63 @@ import RadioIcon from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 import {Radio, Icon, Modal, ScrollView} from 'native-base';
 import {TextInput} from '../../Components/textInput/TextInput';
 import Reactotron from 'reactotron-react-native';
+import firebase from '../../firebaseConnetion';
 
 export default function Cadastro() {
   const img2 = '../../images/wites.jpg';
   const img6 = '../../images/manman.png';
   const img7 = '../../images/logot.png';
 
+  const {height} = Dimensions.get('window');
   const [text, onChangeText] = useState('');
   const [text2, onChangeText2] = useState('');
   const [radioValue, setRadioValue] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
-  const {height} = Dimensions.get('window');
-  const [user, setUser] = useState('');
+  const [loading, setIsLoading] = useState(false);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const {navigate, goBack} = useNavigation<any>();
   const navigation = useNavigation();
+
+  async function cadastro() {
+    // if (user !== '' && email !== '' && password !== '') {
+    //   let usuarios = await firebase.database().ref('usuarios');
+    //   let chave = usuarios.push().key;
+    //   usuarios.child(chave).set({
+    //     user: user,
+    //     email: email,
+    //     password: password,
+    //   });
+    //   alert('Cadastrado com Sucesso!');
+    //   setUser('');
+    //   setEmail('');
+    //   setPassword('');
+    //   navigation.navigate('Login');
+    // }
+
+    await firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(value => {
+        alert('Cadastro realizado: ' + value.user.email);
+        navigation.navigate('Login');
+      })
+      .catch(error => {
+        if (error.code === 'auth/weak-password') {
+          alert('Sua senha deve ter pelomenos 6 caracteres');
+          return;
+        }
+        if (error.code === 'auth/invald-password') {
+          alert('Email invalido');
+          return;
+        } else {
+          alert('Ops algo deu errado!');
+          return;
+        }
+      });
+  }
 
   return (
     <Styled.Container>
@@ -52,23 +92,26 @@ export default function Cadastro() {
             <Styled.TextSub>Iremos começar criando sua conta!</Styled.TextSub>
           </Styled.Viewlogo>
           <Styled.ViewTexts>
-            <TextInput
+            {/* <TextInput
               onChangeText={value => setUser(value)}
               placeholder="Usuario"
-            />
+              value={user}
+            /> */}
             <TextInput
               onChangeText={value => setEmail(value)}
               placeholder="Email"
+              value={email}
             />
             <TextInput
               onChangeText={value => setPassword(value)}
               placeholder="Senha"
+              value={password}
             />
           </Styled.ViewTexts>
 
           <Styled.ViewBtCriar>
             <BotaoHome
-              onPress={() => navigate('Login')}
+              onPress={() => cadastro()}
               height={'40px'}
               width={'100%'}
               title={'Criar!'}
