@@ -24,6 +24,20 @@ export default function Home() {
 
   const navigation = useNavigation();
 
+  useEffect(() => {
+    async function dados() {
+      await firebase.database().ref('tipo').set('Teste2');
+      await firebase
+        .database()
+        .ref('usuarios/1/')
+        .on('value', snapshot => {
+          setNome(snapshot.val().nome);
+          setIdade(snapshot.val().idade);
+        });
+    }
+    dados();
+  }, []);
+
   return (
     <Styled.Container>
       {/* <Modal isOpen={modalVisible} onClose={() => setModalVisible(false)}>
