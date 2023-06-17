@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {ImageBackground, TouchableOpacity, View} from 'react-native';
+import {ImageBackground, TouchableOpacity, View, FlatList} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {BotaoHome} from '../../Components/Button/index';
 import * as Styled from './styles';
@@ -14,8 +14,9 @@ export default function Home() {
   const [text2, onChangeText2] = useState('');
   const [radioValue, setRadioValue] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
-  const [nome, setNome] = useState('Carregue ..');
-  const [idade, setIdade] = useState('Carregando..');
+  const [nome, setNome] = useState('Carregando ..');
+  const [email, setEmail] = useState('Carregando..');
+  const [usuarios, setUsuarios] = useState([]);
 
   const tamanho = 350;
   const tamanhoIcon = 90;
@@ -23,23 +24,9 @@ export default function Home() {
 
   const navigation = useNavigation();
 
-  useEffect(() => {
-    async function dados() {
-      await firebase.database().ref('tipo').set('Teste2');
-      await firebase
-        .database()
-        .ref('usuarios/1/')
-        .on('value', snapshot => {
-          setNome(snapshot.val().nome);
-          setIdade(snapshot.val().idade);
-        });
-    }
-    dados();
-  }, []);
-
   return (
     <Styled.Container>
-      <Modal isOpen={modalVisible} onClose={() => setModalVisible(false)}>
+      {/* <Modal isOpen={modalVisible} onClose={() => setModalVisible(false)}>
         <View
           style={{
             height: '90%',
@@ -123,31 +110,39 @@ export default function Home() {
                 bottom: '20%',
                 borderRadius: tamanho,
               }}></View>
-            <RadioIcon name="alien" size={tamanhoPorcent} color={'#3dd41e'} />
-          </TouchableOpacity>
-        </View>
-      </Modal>
+            <RadioIcon name="alien" size={tamanhoPorcent} color={'#3dd41e'} /> */}
+      {/* </TouchableOpacity> */}
+      {/* </View> */}
+      {/* </Modal> */}
       <ImageBackground source={require(img2)} style={{flex: 1, width: '100%'}}>
         <Styled.ViewTexts>
           <Styled.TextWel>Welcome</Styled.TextWel>
+
           <Styled.TextSub>
             It is very important to be patient, to be followed by the customer.
             Until the author is but the price of mourninlg. {'\n'}
-            {'\n'} Ola {nome} , Idade {idade}
+            {'\n'} Ola {nome} , Idade {email}
           </Styled.TextSub>
         </Styled.ViewTexts>
-
         <Styled.ViewInput>
           <View
             style={{
               width: '100%',
               justifyContent: 'center',
               alignItems: 'center',
+              flexDirection: 'row',
             }}>
+            <TouchableOpacity onPress={() => teste()}>
+              <Icone
+                name="arrow-forward-circle-outline"
+                size={30}
+                color="#05f7f7fd"
+              />
+            </TouchableOpacity>
             <TouchableOpacity onPress={() => setModalVisible(true)}>
               <Icone
                 name="arrow-forward-circle-outline"
-                size={50}
+                size={30}
                 color="#900"
               />
             </TouchableOpacity>
