@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "584059978562",
+    "firebase_url": "https://projetoestoque-d2276-default-rtdb.firebaseio.com",
+    "project_id": "projetoestoque-d2276",
+    "storage_bucket": "projetoestoque-d2276.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584059978562:android:90f81b98f433afd78bbedb",
+        "android_client_info": {
+          "package_name": "com.projestoque"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "584059978562-p1ab3ll70m456anqoldmvkh87fcr38h4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDC_r2aLs6DTKe4htZg2mFMhqBrkHL7_vk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "584059978562-p1ab3ll70m456anqoldmvkh87fcr38h4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

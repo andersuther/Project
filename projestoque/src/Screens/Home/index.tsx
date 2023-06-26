@@ -24,20 +24,6 @@ export default function Home() {
 
   const navigation = useNavigation();
 
-  useEffect(() => {
-    async function dados() {
-      await firebase.database().ref('tipo').set('Teste2');
-      await firebase
-        .database()
-        .ref('usuarios/1/')
-        .on('value', snapshot => {
-          setNome(snapshot.val().nome);
-          setIdade(snapshot.val().idade);
-        });
-    }
-    dados();
-  }, []);
-
   return (
     <Styled.Container>
       {/* <Modal isOpen={modalVisible} onClose={() => setModalVisible(false)}>
@@ -135,7 +121,7 @@ export default function Home() {
           <Styled.TextSub>
             It is very important to be patient, to be followed by the customer.
             Until the author is but the price of mourninlg. {'\n'}
-            {'\n'} Ola {nome} , Idade {email}
+            {/* {'\n'} Ola {nome} , Idade {email} */}
           </Styled.TextSub>
         </Styled.ViewTexts>
         <Styled.ViewInput>
@@ -146,7 +132,7 @@ export default function Home() {
               alignItems: 'center',
               flexDirection: 'row',
             }}>
-            <TouchableOpacity onPress={() => teste()}>
+            <TouchableOpacity onPress={() => {}}>
               <Icone
                 name="arrow-forward-circle-outline"
                 size={30}
@@ -210,19 +196,15 @@ export default function Home() {
             </Radio>
           </Radio.Group>
           <Styled.Input
-            backgroundColor="transparent"
             placeholderTextColor="#000000"
             onChangeText={onChangeText}
             value={text}
-            placeholder="Email Adress"
-            color="#000"></Styled.Input>
+            placeholder="Email Adress"></Styled.Input>
           <Styled.Input
-            backgroundColor="transparent"
             placeholderTextColor="#000000"
             onChangeText={onChangeText2}
             value={text2}
-            placeholder="* * * * *"
-            color="#000"></Styled.Input>
+            placeholder="* * * * *"></Styled.Input>
         </Styled.ViewInput>
         <BotaoHome
           title={'Login'}

@@ -1,0 +1,116 @@
+> Task :app:signingReport
+Variant: debug
+Config: debug
+Store: E:\Project\projestoque\android\app\debug.keystore
+Alias: androiddebugkey
+MD5: 20:F4:61:48:B7:2D:8E:5E:5C:A2:3D:37:A4:F4:14:90
+SHA1: 5E:8F:16:06:2E:A3:CD:2C:4A:0D:54:78:76:BA:A6:F3:8C:AB:F6:25
+SHA-256: FA:C6:17:45:DC:09:03:78:6F:B9:ED:E6:2A:96:2B:39:9F:73:48:F0:BB:6F:89:9B:83:32:66:75:91:03:3B:9C
+Valid until: terþa-feira, 30 de abril de 2052
+----------
+Variant: release
+Config: debug
+Store: E:\Project\projestoque\android\app\debug.keystore
+Alias: androiddebugkey
+MD5: 20:F4:61:48:B7:2D:8E:5E:5C:A2:3D:37:A4:F4:14:90
+SHA1: 5E:8F:16:06:2E:A3:CD:2C:4A:0D:54:78:76:BA:A6:F3:8C:AB:F6:25
+SHA-256: FA:C6:17:45:DC:09:03:78:6F:B9:ED:E6:2A:96:2B:39:9F:73:48:F0:BB:6F:89:9B:83:32:66:75:91:03:3B:9C
+Valid until: terþa-feira, 30 de abril de 2052
+----------
+Variant: debugAndroidTest
+Config: debug
+Store: E:\Project\projestoque\android\app\debug.keystore
+Alias: androiddebugkey
+MD5: 20:F4:61:48:B7:2D:8E:5E:5C:A2:3D:37:A4:F4:14:90
+SHA1: 5E:8F:16:06:2E:A3:CD:2C:4A:0D:54:78:76:BA:A6:F3:8C:AB:F6:25
+SHA-256: FA:C6:17:45:DC:09:03:78:6F:B9:ED:E6:2A:96:2B:39:9F:73:48:F0:BB:6F:89:9B:83:32:66:75:91:03:3B:9C
+Valid until: terþa-feira, 30 de abril de 2052
+----------
+
+> Task :react-native-async-storage_async-storage:signingReport
+Variant: debugAndroidTest
+Config: debug
+Store: C:\Users\radic\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: A9:36:34:2C:4B:3E:2A:2D:0C:2A:7C:52:EB:FE:8E:93
+SHA1: 20:A0:F6:46:CC:2B:3F:89:28:9B:22:1C:52:43:F1:62:AC:8C:E3:FB
+SHA-256: 0F:C3:94:FF:00:7C:8A:8C:E4:A1:70:98:E2:58:10:6F:90:0A:DC:0D:51:91:FE:3F:78:8E:50:73:8E:76:66:80
+Valid until: quarta-feira, 4 de dezembro de 2052
+----------
+
+> Task :react-native-date-picker:signingReport
+Variant: debugAndroidTest
+Config: debug
+Store: C:\Users\radic\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: A9:36:34:2C:4B:3E:2A:2D:0C:2A:7C:52:EB:FE:8E:93
+SHA1: 20:A0:F6:46:CC:2B:3F:89:28:9B:22:1C:52:43:F1:62:AC:8C:E3:FB
+SHA-256: 0F:C3:94:FF:00:7C:8A:8C:E4:A1:70:98:E2:58:10:6F:90:0A:DC:0D:51:91:FE:3F:78:8E:50:73:8E:76:66:80
+Valid until: quarta-feira, 4 de dezembro de 2052
+----------
+
+> Task :react-native-firebase_app:signingReport
+Variant: debugAndroidTest
+Config: debug
+Store: C:\Users\radic\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: A9:36:34:2C:4B:3E:2A:2D:0C:2A:7C:52:EB:FE:8E:93
+SHA1: 20:A0:F6:46:CC:2B:3F:89:28:9B:22:1C:52:43:F1:62:AC:8C:E3:FB
+SHA-256: 0F:C3:94:FF:00:7C:8A:8C:E4:A1:70:98:E2:58:10:6F:90:0A:DC:0D:51:91:FE:3F:78:8E:50:73:8E:76:66:80
+Valid until: quarta-feira, 4 de dezembro de 2052
+----------
+
+> Task :react-native-firebase_auth:signingReport
+Variant: debugAndroidTest
+Config: debug
+Store: C:\Users\radic\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: A9:36:34:2C:4B:3E:2A:2D:0C:2A:7C:52:EB:FE:8E:93
+SHA1: 20:A0:F6:46:CC:2B:3F:89:28:9B:22:1C:52:43:F1:62:AC:8C:E3:FB
+SHA-256: 0F:C3:94:FF:00:7C:8A:8C:E4:A1:70:98:E2:58:10:6F:90:0A:DC:0D:51:91:FE:3F:78:8E:50:73:8E:76:66:80
+Valid until: quarta-feira, 4 de dezembro de 2052
+----------
+
+> Task :react-native-safe-area-context:signingReport
+Variant: debugAndroidTest
+Config: debug
+Store: C:\Users\radic\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: A9:36:34:2C:4B:3E:2A:2D:0C:2A:7C:52:EB:FE:8E:93
+SHA1: 20:A0:F6:46:CC:2B:3F:89:28:9B:22:1C:52:43:F1:62:AC:8C:E3:FB
+SHA-256: 0F:C3:94:FF:00:7C:8A:8C:E4:A1:70:98:E2:58:10:6F:90:0A:DC:0D:51:91:FE:3F:78:8E:50:73:8E:76:66:80
+Valid until: quarta-feira, 4 de dezembro de 2052
+----------
+
+> Task :react-native-screens:signingReport
+Variant: debugAndroidTest
+Config: debug
+Store: C:\Users\radic\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: A9:36:34:2C:4B:3E:2A:2D:0C:2A:7C:52:EB:FE:8E:93
+SHA1: 20:A0:F6:46:CC:2B:3F:89:28:9B:22:1C:52:43:F1:62:AC:8C:E3:FB
+SHA-256: 0F:C3:94:FF:00:7C:8A:8C:E4:A1:70:98:E2:58:10:6F:90:0A:DC:0D:51:91:FE:3F:78:8E:50:73:8E:76:66:80
+Valid until: quarta-feira, 4 de dezembro de 2052
+----------
+
+> Task :react-native-svg:signingReport
+Variant: debugAndroidTest
+Config: debug
+Store: C:\Users\radic\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: A9:36:34:2C:4B:3E:2A:2D:0C:2A:7C:52:EB:FE:8E:93
+SHA1: 20:A0:F6:46:CC:2B:3F:89:28:9B:22:1C:52:43:F1:62:AC:8C:E3:FB
+SHA-256: 0F:C3:94:FF:00:7C:8A:8C:E4:A1:70:98:E2:58:10:6F:90:0A:DC:0D:51:91:FE:3F:78:8E:50:73:8E:76:66:80
+Valid until: quarta-feira, 4 de dezembro de 2052
+----------
+
+> Task :react-native-vector-icons:signingReport
+Variant: debugAndroidTest
+Config: debug
+Store: C:\Users\radic\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: A9:36:34:2C:4B:3E:2A:2D:0C:2A:7C:52:EB:FE:8E:93
+SHA1: 20:A0:F6:46:CC:2B:3F:89:28:9B:22:1C:52:43:F1:62:AC:8C:E3:FB
+SHA-256: 0F:C3:94:FF:00:7C:8A:8C:E4:A1:70:98:E2:58:10:6F:90:0A:DC:0D:51:91:FE:3F:78:8E:50:73:8E:76:66:80
+Valid until: quarta-feira, 4 de dezembro de 2052
+----------

@@ -18,7 +18,7 @@ import RadioIcon from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 import {Radio, Icon, Modal, ScrollView} from 'native-base';
 import {TextInput} from '../../Components/textInput/TextInput';
 import Reactotron from 'reactotron-react-native';
-import firebase from '../../firebaseConnetion';
+import auth from '@react-native-firebase/auth';
 
 export default function Cadastro() {
   const img2 = '../../images/wites.jpg';
@@ -39,26 +39,10 @@ export default function Cadastro() {
   const navigation = useNavigation();
 
   async function cadastro() {
-    // if (user !== '' && email !== '' && password !== '') {
-    //   let usuarios = await firebase.database().ref('usuarios');
-    //   let chave = usuarios.push().key;
-    //   usuarios.child(chave).set({
-    //     user: user,
-    //     email: email,
-    //     password: password,
-    //   });
-    //   alert('Cadastrado com Sucesso!');
-    //   setUser('');
-    //   setEmail('');
-    //   setPassword('');
-    //   navigation.navigate('Login');
-    // }
-
-    await firebase
-      .auth()
+    await auth()
       .createUserWithEmailAndPassword(email, password)
       .then(value => {
-        alert('Cadastro realizado: ' + value.user.email);
+        alert('Cadastro realizado: ' + value.user?.email);
         navigation.navigate('Login');
       })
       .catch(error => {
@@ -92,11 +76,6 @@ export default function Cadastro() {
             <Styled.TextSub>Iremos começar criando sua conta!</Styled.TextSub>
           </Styled.Viewlogo>
           <Styled.ViewTexts>
-            {/* <TextInput
-              onChangeText={value => setUser(value)}
-              placeholder="Usuario"
-              value={user}
-            /> */}
             <TextInput
               onChangeText={value => setEmail(value)}
               placeholder="Email"

@@ -33,10 +33,7 @@ export default function Register() {
           value={text4}
           placeholder="Password"></TextInput>
         <View style={{width: '100%', alignItems: 'center'}}>
-          <Button
-            title="Register"
-            onPress={() => navigation.navigate('Teste')}
-          />
+          <Button title="Register" onPress={() => {}} />
         </View>
       </ImageBackground>
     </View>

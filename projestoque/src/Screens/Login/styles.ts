@@ -42,7 +42,7 @@ export const TxtCrie = styled.Text`
   font-size: 20px;
 `;
 export const TxtSair = styled.Text`
-  color: red;
+  color: yellow;
   //font-weight: 300;
   font-size: 20px;
 `;
