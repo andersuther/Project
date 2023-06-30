@@ -9,6 +9,7 @@ import {
   View,
   Text,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {BotaoHome} from '../../Components/Button/index';
@@ -54,6 +55,10 @@ const Login: React.FC = () => {
     return auth().signInWithCredential(googleCredential);
   }
   async function logar() {
+    if (!email || !password) {
+      Alert.alert('Atenção', 'Email e senha devem ser informados!');
+      return;
+    }
     await auth()
       .signInWithEmailAndPassword(email, password)
       .then(value => {
@@ -88,7 +93,7 @@ const Login: React.FC = () => {
               source={require(img6)}
               style={{width: '48%', height: '53%'}}
             />
-            {loading && <Spinner color={'#203de6'} size={70} />}
+            {loading && <Spinner color={'#203de6'} size={50} />}
           </Styled.Viewlogo>
           {!loading && (
             <>
@@ -98,7 +103,7 @@ const Login: React.FC = () => {
                   titleTab2={'Logistica'}
                   content1={
                     <>
-                      {/* <Text>{user}</Text> */}
+                      <Text>{user}</Text>
                       <Icon name="person-sharp" size={25} color="#000" />
                       <TextInput
                         onChangeText={value => setEmail(value)}
@@ -159,12 +164,12 @@ const Login: React.FC = () => {
                   <Styled.TxtCrie>Crie sua conta!</Styled.TxtCrie>
                 </TouchableOpacity>
                 {/* {user.length > 0 ? (
-              <TouchableOpacity onPress={() => logout()}>
-                <Styled.TxtSair>Sair</Styled.TxtSair>
-              </TouchableOpacity>
-            ) : (
-              <></>
-            )} */}
+                  <TouchableOpacity onPress={() => logout()}>
+                    <Styled.TxtSair>Sair</Styled.TxtSair>
+                  </TouchableOpacity>
+                ) : (
+                  <></>
+                )} */}
               </Styled.ViewBtConta>
             </>
           )}

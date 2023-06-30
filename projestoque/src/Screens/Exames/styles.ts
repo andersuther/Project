@@ -45,13 +45,13 @@ export const TextAr = styled.Text`
   font-weight: 400;
   //
 `;
-export const TextExame = styled.Text`
-  color: gray;
+export const TextItem = styled.Text`
+  color: #000000;
   justify-content: center;
   align-items: center;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 20px;
-  //
+  align-self: center;
 `;
 
 export const ViewBts = styled.View`
