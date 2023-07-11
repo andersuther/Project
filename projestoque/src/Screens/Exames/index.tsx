@@ -111,20 +111,15 @@ const Dashboard: React.FC = () => {
     const Arrayfiltrado = meuArray.filter(item => item.data === novaData);
     setUseList(Arrayfiltrado);
     if (Arrayfiltrado.length < 1) {
-      console.tron.log('abre modal');
     }
-    console.tron.log('teste de log', Arrayfiltrado);
   };
 
   const clearFilter = () => {
     setUseList(meuArray);
-    console.tron.log('clear');
-    console.tron.log('fecha a modal');
   };
 
   // const datalll = "28-04-2023"
   // const cortaData = datalll.slice(-4)
-  // console.tron.log("data cortada", cortaData);
 
   return (
     <Styled.Container>

@@ -49,7 +49,6 @@ const Login: React.FC = () => {
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 
     // Sign-in the user with the credential
-    console.tron.log('teste', googleCredential);
     navigate('Exames');
     setIsLoanding(false);
     return auth().signInWithCredential(googleCredential);
@@ -103,7 +102,6 @@ const Login: React.FC = () => {
                   titleTab2={'Logistica'}
                   content1={
                     <>
-                      <Text>{user}</Text>
                       <Icon name="person-sharp" size={25} color="#000" />
                       <TextInput
                         onChangeText={value => setEmail(value)}
