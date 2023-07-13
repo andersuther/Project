@@ -1,12 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import {LogBox} from 'react-native';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {BotaoHome} from '../../Components/Button/index';
 import * as Styled from './styles';
 import RadioIcon from 'react-native-vector-icons/dist/MaterialCommunityIcons';
-import {Modal} from 'native-base';
+import {Input, Modal} from 'native-base';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 import DatePicker from 'react-native-date-picker';
+import {TextInput} from '../../Components/textInput/TextInput';
 import moment from 'moment';
+
+import api from '../../Services/api';
 
 // Ignore log notification by message
 LogBox.ignoreLogs(['Warning: ...']);
@@ -101,6 +105,47 @@ const Dashboard: React.FC = () => {
 
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
+  const [nome, setNome] = useState('');
+  const [valor, setValor] = useState('R$ ');
+  const [complemento, setComplemento] = useState('');
+  const [data, setData] = useState('');
+
+  const [novoArray, SetnovoArray] = useState([]);
+
+  // async function fetchItensList() {
+  //   try {
+  //     const response = await fetch('http://localhost:3000/itens-list');
+  //     const resultado = await response.json();
+  //     return resultado;
+  //   } catch (error) {
+  //     console.error('Erro ao buscar a lista de itens:', error);
+  //     return []; // Retorna um array vazio em caso de erro
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   fetchItensList().then(resultado => {
+  //     SetnovoArray(resultado);
+  //   });
+  // }, []);
+
+  // useEffect(() => {
+  //   fetch('http://localhost:3000/itens-list')
+  //     .then(resul => resul.json())
+  //     .then(resultado => {
+  //       console.tron.log('testeee', resultado);
+  //       SetnovoArray(resultado);
+  //     });
+  // }, []);
+
+  useEffect(() => {
+    getArray();
+  }, []);
+
+  const getArray = async () => {
+    const array = await api.get('/itens');
+    console.tron.log('teste de log*********', array);
+  };
 
   useEffect(() => {
     setUseList(meuArray);
@@ -117,10 +162,9 @@ const Dashboard: React.FC = () => {
   const clearFilter = () => {
     setUseList(meuArray);
   };
-
-  // const datalll = "28-04-2023"
-  // const cortaData = datalll.slice(-4)
-
+  const handleinclude = () => {
+    setModalVisible(false);
+  };
   return (
     <Styled.Container>
       <Styled.VTextExame>
@@ -154,7 +198,7 @@ const Dashboard: React.FC = () => {
           </Styled.DataBt>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => setModalVisible(true)}>
+        <TouchableOpacity onPress={() => {}}>
           <Styled.StatusBt>
             <Text>Status</Text>
             <Icon name="caret-down" size={19} color="#000" />
@@ -163,8 +207,8 @@ const Dashboard: React.FC = () => {
               <View
                 style={{
                   height: '50%',
-                  width: '70%',
-                  backgroundColor: '#be2',
+                  width: '80%',
+                  backgroundColor: '#ffffff',
                   borderRadius: 2,
                   alignSelf: 'center',
                   alignItems: 'flex-end',
@@ -181,12 +225,83 @@ const Dashboard: React.FC = () => {
                   }}>
                   <RadioIcon name="close" size={25} color={'#000'} />
                 </TouchableOpacity>
+                <View
+                  style={{
+                    justifyContent: 'center',
+
+                    width: '100%',
+                    alignItems: 'center',
+                  }}>
+                  <Text>CADASTRAR ITEM</Text>
+                </View>
+
+                <View
+                  style={{
+                    alignItems: 'center',
+                    width: '97%',
+                    margin: 2,
+                    padding: 5,
+                    paddingTop: 20,
+                  }}>
+                  <TextInput fontSize={18} placeholder="Nome" />
+                  <TextInput
+                    onChangeText={text => setValor(text)}
+                    keyboardType={'numeric'}
+                    fontSize={18}
+                    value={valor}
+                    placeholder="Valor"
+                  />
+
+                  <TextInput fontSize={18} placeholder="Complemento" />
+
+                  <TextInput
+                    onChangeText={text => setData(text)}
+                    keyboardType="numeric"
+                    fontSize={18}
+                    placeholder="Data"
+                    value={data}
+                  />
+
+                  <BotaoHome
+                    width="35%"
+                    color="#08c512f4"
+                    height="30px"
+                    title="Cadastrar"
+                    radius="10px"
+                    texto="14px"
+                    onPress={() => handleinclude()}
+                  />
+                </View>
               </View>
             </Modal>
           </Styled.StatusBt>
         </TouchableOpacity>
       </Styled.ViewBts>
 
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+        }}>
+        <BotaoHome
+          width="35%"
+          color="red"
+          height="30px"
+          title="Limpar filtro"
+          radius="10px"
+          texto="14px"
+          onPress={() => clearFilter()}
+        />
+        <BotaoHome
+          width="36%"
+          color="#08c512f4"
+          height="30px"
+          title="Adicionar Iten"
+          radius="10px"
+          texto="14px"
+          onPress={() => setModalVisible(true)}
+        />
+      </View>
       <Styled.Scroll>
         <View>
           {useList.map(item => (

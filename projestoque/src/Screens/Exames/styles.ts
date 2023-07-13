@@ -16,10 +16,15 @@ export const VTextExame = styled.View`
 `;
 
 export const ViewArray = styled.View`
-  width: 100%;
-  padding: 3%;
-  border-bottom-color: #000;
+  width: 90%;
+  justify-content: center;
+  margin-top: 2px;
+  padding: 5%;
+  align-self: center;
+  border-color: #000;
   border-width: 1px;
+  border: 1px;
+  border-radius: 15px;
 `;
 export const ViewBarcode = styled.View`
   width: 100%;
@@ -36,14 +41,12 @@ export const Texts = styled.Text`
   align-items: center;
   font-weight: 400;
   font-weight: bold;
-  //
 `;
 export const TextAr = styled.Text`
   color: #000000;
   justify-content: center;
   align-items: center;
   font-weight: 400;
-  //
 `;
 export const TextItem = styled.Text`
   color: #000000;
@@ -56,11 +59,11 @@ export const TextItem = styled.Text`
 
 export const ViewBts = styled.View`
   flex-direction: row;
-  justify-content: space-between;
-  padding: 2%;
-  margin-right: 50px;
-  margin-left: 20px;
-  margin-bottom: 20px;
+  align-items: center;
+  justify-self: center;
+  height: 40px;
+  justify-content: space-around;
+  margin-bottom: 5px;
 `;
 
 export const DataBt = styled.View`

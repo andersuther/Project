@@ -14,6 +14,7 @@ export const TextInput: React.FC<IInput> = ({
   width,
   heigth,
   rounded,
+  fontSize,
 }) => {
   const [secure, setSecure] = useState(true);
 
@@ -28,6 +29,7 @@ export const TextInput: React.FC<IInput> = ({
       radius={rounded ? 20 : 0}>
       <Styled.Input
         value={value}
+        fontSize={fontSize}
         placeholderTextColor={rounded ? '#999' : '#4f4e57'}
         placeholder={placeholder}
         onChangeText={onChangeText}

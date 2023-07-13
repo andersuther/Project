@@ -33,6 +33,8 @@ const Login: React.FC = () => {
   const [user, setUser] = useState('');
   const [loading, setIsLoanding] = useState(false);
 
+  const secret = process.env;
+
   GoogleSignin.configure({
     webClientId:
       '584059978562-p1ab3ll70m456anqoldmvkh87fcr38h4.apps.googleusercontent.com',
@@ -53,6 +55,7 @@ const Login: React.FC = () => {
     setIsLoanding(false);
     return auth().signInWithCredential(googleCredential);
   }
+
   async function logar() {
     if (!email || !password) {
       Alert.alert('Atenção', 'Email e senha devem ser informados!');
@@ -106,13 +109,14 @@ const Login: React.FC = () => {
                       <TextInput
                         onChangeText={value => setEmail(value)}
                         placeholder="Usuario"
+                        fontSize={22}
                       />
                       <TextInput
                         secureTextEntry={Icon}
                         onChangeText={value => setPassword(value)}
                         placeholder="Senha"
                         heigth={50}
-                        fontSize={25}
+                        fontSize={22}
                         padL={12}
                       />
                     </>

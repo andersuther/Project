@@ -18,7 +18,7 @@ export const Container = styled.View<IInput>`
 `;
 
 export const Input = styled.TextInput`
-  font-size: 20px;
+  font-size: ${props => props.fontSize || '20px'};
   font-weight: 400;
   flex: 1;
   color: #333;

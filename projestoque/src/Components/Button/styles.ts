@@ -3,7 +3,7 @@ import Icone from 'react-native-vector-icons/Ionicons';
 
 export const Botao = styled.TouchableOpacity`
   background-color: ${props => props.bgColor || '#FFF'};
-  border-radius: 40px;
+  border-radius: ${props => props.radius || '40px'};
   width: 80%;
   height: ${props => props.height || '35px'};
   justify-content: center;
@@ -26,7 +26,7 @@ export const ViewBotao = styled.View`
 `;
 
 export const TxtButton = styled.Text`
-  font-size: 20px;
+  font-size: ${props => props.texto || '20px'};
   color: ${props => props.color || '#fff'};
 `;
 

@@ -3,6 +3,7 @@ import {ActivityIndicator, Text} from 'react-native';
 import * as Styled from './styles';
 import {Spinner} from 'native-base';
 interface Types {
+  texto?: string;
   title?: string;
   color?: string;
   height?: string;
@@ -14,17 +15,20 @@ interface Types {
   Flexdir?: string;
   pd?: string;
   isLoading?: boolean;
+  radius?: string;
 }
 
 export const BotaoHome: React.FC<Types> = ({
   title,
   color,
+  radius,
   onPress,
   height,
   width,
   pd,
   Flexdir,
   navigate,
+  texto,
   Iconame,
   isLoading,
 }) => {
@@ -37,12 +41,14 @@ export const BotaoHome: React.FC<Types> = ({
         onPress={onPress}
         height={height}
         width={width}
+        title={title}
+        radius={radius}
         pd={pd}>
         {!isLoading && Iconame && <Styled.Icon name={'logo-google'} />}
         {isLoading ? (
           <Spinner color={'cyan.500'} />
         ) : (
-          <Styled.TxtButton>{title}</Styled.TxtButton>
+          <Styled.TxtButton texto={texto}>{title}</Styled.TxtButton>
         )}
       </Styled.Botao>
     </Styled.ViewBotao>
