@@ -90,4 +90,5 @@ export const StatusBt = styled.View`
 `;
 export const Scroll = styled.ScrollView`
   flex: 1;
+  margin-bottom: 2%;
 `;

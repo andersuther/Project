@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {LogBox} from 'react-native';
+import {Alert, LogBox} from 'react-native';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import {BotaoHome} from '../../Components/Button/index';
 import * as Styled from './styles';
@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/dist/Ionicons';
 import DatePicker from 'react-native-date-picker';
 import {TextInput} from '../../Components/textInput/TextInput';
 import moment from 'moment';
+import {getList, createIten, DeleteItens} from './api';
 
 import api from '../../Services/api';
 
@@ -22,149 +23,60 @@ const Dashboard: React.FC = () => {
   const img9 = '../../images/tttt.png';
   const [modalVisible, setModalVisible] = useState(false);
   const [useList, setUseList] = useState<any>([]);
-
-  const meuArray = [
-    {
-      id: 1,
-      nome: 'João',
-      data: '01-01-2023',
-      valor: 'R$ 10,00',
-      complemento: 'Tosa',
-    },
-    {
-      id: 2,
-      nome: 'Ana',
-      data: '05-02-2023',
-      valor: 'R$ 10,00',
-      complemento: 'Vacinação pendente',
-    },
-    {
-      id: 3,
-      nome: 'Pedro',
-      data: '15-03-2023',
-      valor: 'R$ 10,00',
-      complemento: 'Alergia a ração de frango',
-    },
-    {
-      id: 4,
-      nome: 'Mariana',
-      data: '10-04-2023',
-      valor: 'R$ 10,00',
-      complemento: 'Nenhum',
-    },
-    {
-      id: 5,
-      nome: 'Carlos',
-      data: '20-05-2022',
-      valor: 'R$ 10,00',
-      complemento: 'Precisa de escovação diária',
-    },
-    {
-      id: 6,
-      nome: 'Paula',
-      data: '07-06-2024',
-      valor: 'R$ 10,00',
-      complemento: 'Alergia a pulgas',
-    },
-    {
-      id: 7,
-      nome: 'Lúcia',
-      data: '25-06-2023',
-      valor: 'R$ 10,00',
-      complemento: 'Precisa de medicamento diário',
-    },
-    {
-      id: 8,
-      nome: 'Gustavo',
-      data: '05-09-2023',
-      valor: 'R$ 10,00',
-      complemento: 'Castrado',
-    },
-    {
-      id: 9,
-      nome: 'Fernando',
-      data: '18-08-2023',
-      valor: 'R$ 10,00',
-      complemento: 'Nenhum',
-    },
-    {
-      id: 10,
-      nome: 'Juliana',
-      data: '05-09-2023',
-      valor: 'R$ 10,00',
-      complemento: 'Precisa de banho semanal',
-    },
-    {
-      id: 11,
-      nome: 'Lucas',
-      data: '05-09-2023',
-      valor: 'R$ 10,00',
-      complemento: 'Alergia a pólen',
-    },
-  ];
+  const [initialData, setInitialData] = useState([]);
 
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const [nome, setNome] = useState('');
-  const [valor, setValor] = useState('R$ ');
+  const [valor, setValor] = useState('');
   const [complemento, setComplemento] = useState('');
   const [data, setData] = useState('');
 
   const [novoArray, SetnovoArray] = useState([]);
-
-  // async function fetchItensList() {
-  //   try {
-  //     const response = await fetch('http://localhost:3000/itens-list');
-  //     const resultado = await response.json();
-  //     return resultado;
-  //   } catch (error) {
-  //     console.error('Erro ao buscar a lista de itens:', error);
-  //     return []; // Retorna um array vazio em caso de erro
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   fetchItensList().then(resultado => {
-  //     SetnovoArray(resultado);
-  //   });
-  // }, []);
-
-  // useEffect(() => {
-  //   fetch('http://localhost:3000/itens-list')
-  //     .then(resul => resul.json())
-  //     .then(resultado => {
-  //       console.tron.log('testeee', resultado);
-  //       SetnovoArray(resultado);
-  //     });
-  // }, []);
 
   useEffect(() => {
     getArray();
   }, []);
 
   const getArray = async () => {
-    const array = await api.get('/itens');
+    const array = await getList();
+    setUseList(array?.allItens);
+    setInitialData(array?.allItens);
     console.tron.log('teste de log*********', array);
   };
 
-  useEffect(() => {
-    setUseList(meuArray);
-  }, []);
+  const create = async () => {
+    const obj = {
+      nome,
+      valor: valor.length > 0 ? 'R$ ' + valor : '',
+      complemento,
+    };
+    setValor('');
+    createIten(obj, getArray, Alert);
+    setModalVisible(false);
+  };
 
   const filterList = data => {
     const novaData = moment(data).format('DD-MM-YYYY');
-    const Arrayfiltrado = meuArray.filter(item => item.data === novaData);
+
+    const Arrayfiltrado = initialData.filter(
+      item => moment(item.created_at).format('DD-MM-YYYY') === novaData,
+    );
     setUseList(Arrayfiltrado);
     if (Arrayfiltrado.length < 1) {
     }
   };
 
   const clearFilter = () => {
-    setUseList(meuArray);
+    setUseList(initialData);
   };
-  const handleinclude = () => {
-    setModalVisible(false);
+
+  const deleteItem = async id => {
+    console.tron.log('chama id', id);
+    await DeleteItens(id);
+    getArray();
   };
+
   return (
     <Styled.Container>
       <Styled.VTextExame>
@@ -243,7 +155,11 @@ const Dashboard: React.FC = () => {
                     padding: 5,
                     paddingTop: 20,
                   }}>
-                  <TextInput fontSize={18} placeholder="Nome" />
+                  <TextInput
+                    onChangeText={text => setNome(text)}
+                    fontSize={18}
+                    placeholder="Nome"
+                  />
                   <TextInput
                     onChangeText={text => setValor(text)}
                     keyboardType={'numeric'}
@@ -251,17 +167,11 @@ const Dashboard: React.FC = () => {
                     value={valor}
                     placeholder="Valor"
                   />
-
-                  <TextInput fontSize={18} placeholder="Complemento" />
-
                   <TextInput
-                    onChangeText={text => setData(text)}
-                    keyboardType="numeric"
+                    onChangeText={text => setComplemento(text)}
                     fontSize={18}
-                    placeholder="Data"
-                    value={data}
+                    placeholder="Complemento"
                   />
-
                   <BotaoHome
                     width="35%"
                     color="#08c512f4"
@@ -269,7 +179,7 @@ const Dashboard: React.FC = () => {
                     title="Cadastrar"
                     radius="10px"
                     texto="14px"
-                    onPress={() => handleinclude()}
+                    onPress={() => create()}
                   />
                 </View>
               </View>
@@ -296,7 +206,7 @@ const Dashboard: React.FC = () => {
           width="36%"
           color="#08c512f4"
           height="30px"
-          title="Adicionar Iten"
+          title="Adicionar Item"
           radius="10px"
           texto="14px"
           onPress={() => setModalVisible(true)}
@@ -304,13 +214,24 @@ const Dashboard: React.FC = () => {
       </View>
       <Styled.Scroll>
         <View>
-          {useList.map(item => (
+          {useList?.map(item => (
             <>
               <Styled.ViewArray>
-                <Styled.Texts>
+                {/* <Styled.Texts>
                   ID:<Styled.TextAr> {item?.id}</Styled.TextAr>
-                </Styled.Texts>
+                </Styled.Texts> */}
                 <Styled.Texts>
+                  <TouchableOpacity
+                    onPress={() => deleteItem(item.id)}
+                    style={{
+                      width: 50,
+                      height: 50,
+                      borderRadius: 50,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}>
+                    <RadioIcon name="close" size={25} color={'#000'} />
+                  </TouchableOpacity>
                   Nome:<Styled.TextAr> {item?.nome}</Styled.TextAr>
                 </Styled.Texts>
                 <Styled.Texts>
@@ -321,7 +242,11 @@ const Dashboard: React.FC = () => {
                   <Styled.TextAr> {item?.complemento}</Styled.TextAr>
                 </Styled.Texts>
                 <Styled.Texts>
-                  Data: <Styled.TextAr> {item?.data}</Styled.TextAr>
+                  Data:{' '}
+                  <Styled.TextAr>
+                    {' '}
+                    {moment(item?.created_at).format('DD-MM-YYYY')}
+                  </Styled.TextAr>
                 </Styled.Texts>
               </Styled.ViewArray>
             </>
