@@ -1,4 +1,5 @@
 import api from '../../../Services/api';
+import Snackbar from 'react-native-snackbar';
 //criar e importar snackbar
 
 export const getList = async () => {
@@ -11,13 +12,24 @@ export const getList = async () => {
   }
 };
 
-export const DeleteItens = async id => {
+export const DeleteItens = async (id, nome) => {
   try {
     const list = await api.delete(`/itens/${id}`);
+    Snackbar.show({
+      text: `Excluido com Sucesso!`,
+      duration: Snackbar.LENGTH_LONG,
+      backgroundColor: '#14cf43',
+      textColor: '#fff',
+    });
     return list;
   } catch (error) {
+    Snackbar.show({
+      text: `Não foi possivel excluir`,
+      duration: Snackbar.LENGTH_LONG,
+      backgroundColor: '#14cf43',
+      textColor: '#fff',
+    });
     return error;
-    //chama o snabar e passa error.message
   }
 };
 
@@ -37,9 +49,21 @@ export const createIten = async (obj, recarrega, Mensagem) => {
   try {
     await api.post('/itens', obj);
     recarrega();
+    Snackbar.show({
+      text: `Item criado com Sucesso!`,
+      duration: Snackbar.LENGTH_LONG,
+      backgroundColor: '#14cf43',
+      textColor: '#fff',
+    });
     return 'success';
   } catch (error) {
     Mensagem.alert('Erro', error);
+    Snackbar.show({
+      text: `Não foi possivel criar seu novo Item!`,
+      duration: Snackbar.LENGTH_LONG,
+      backgroundColor: '',
+      textColor: '#fff',
+    });
     return error;
     //chama o snabar e passa error.message
   }

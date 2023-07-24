@@ -105,35 +105,36 @@ const Login: React.FC = () => {
                   titleTab2={'Logistica'}
                   content1={
                     <>
-                      <Icon name="person-sharp" size={25} color="#000" />
+                      <Icon name="person-sharp" size={22} color="#000" />
                       <TextInput
                         onChangeText={value => setEmail(value)}
                         placeholder="Usuario"
-                        fontSize={22}
+                        fontSize={20}
                       />
                       <TextInput
                         secureTextEntry={Icon}
                         onChangeText={value => setPassword(value)}
                         placeholder="Senha"
                         heigth={50}
-                        fontSize={22}
+                        fontSize={20}
                         padL={12}
                       />
                     </>
                   }
                   content2={
                     <>
-                      <Icon name="briefcase" size={25} color="#000" />
+                      <Icon name="briefcase" size={22} color="#000" />
                       <TextInput
                         onChangeText={value => setEmail(value)}
                         placeholder="CNPJ/CPF"
+                        fontSize={20}
                       />
                       <TextInput
                         secureTextEntry={Icon}
                         onChangeText={value => setPassword(value)}
                         placeholder="Senha"
                         heigth={50}
-                        fontSize={25}
+                        fontSize={20}
                       />
                     </>
                   }
