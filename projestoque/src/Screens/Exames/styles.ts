@@ -8,6 +8,7 @@ export const Container = styled.View`
   height: ${height};
   width: ${width};
   flex: 1;
+  background-color: #f69c1a;
 `;
 
 export const ViewText = styled.View`
@@ -66,8 +67,8 @@ export const StatusBt = styled.View`
 export const Scroll = styled.ScrollView`
   flex: 1;
   margin-bottom: 2%;
-  margin-top: 1%;
-  background-color: bisque;
+  margin-top: 2%;
+  background-color: #3abbe3;
 `;
 
 export const ViewArray = styled(Animatable.View).attrs({

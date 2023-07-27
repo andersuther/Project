@@ -1,9 +1,10 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  height: 100%;
-  background-color: blue;
+  /* height: 100%;
+  background-color: blue; */
   /* justify-content: center; */
+  flex: 1;
 `;
 
 export const Viewlogo = styled.View`

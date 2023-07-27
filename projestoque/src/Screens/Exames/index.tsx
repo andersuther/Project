@@ -1,8 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import {Alert, LogBox} from 'react-native';
-import {View, Text, TouchableOpacity} from 'react-native';
-import * as Animatable from 'react-native-animatable';
-
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ImageBackground,
+  Dimensions,
+} from 'react-native';
 import {BotaoHome} from '../../Components/Button/index';
 import * as Styled from './styles';
 import RadioIcon from 'react-native-vector-icons/dist/MaterialCommunityIcons';
@@ -23,12 +27,15 @@ const Dashboard: React.FC = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [useList, setUseList] = useState<any>([]);
   const [initialData, setInitialData] = useState([]);
+  const {height, width} = Dimensions.get('window');
 
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const [nome, setNome] = useState('');
   const [valor, setValor] = useState('');
   const [complemento, setComplemento] = useState('');
+
+  const imgt = '../../images/saddog2.png';
 
   useEffect(() => {
     getArray();
@@ -76,7 +83,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <Styled.Container>
-      <View style={{backgroundColor: '#9417'}}>
+      <View style={{backgroundColor: '#f69c1a'}}>
         <Styled.VTextExame>
           <Styled.TextItem>MEUS ITEMS</Styled.TextItem>
         </Styled.VTextExame>
@@ -211,8 +218,8 @@ const Dashboard: React.FC = () => {
         </Styled.ViewBtsAdd>
       </View>
       <Styled.Scroll>
-        <View>
-          {useList?.map(item => (
+        {useList?.length > 0 ? (
+          useList?.map(item => (
             <>
               <Styled.ViewArray>
                 <Styled.ViewTrash>
@@ -240,8 +247,24 @@ const Dashboard: React.FC = () => {
                 </Styled.Texts>
               </Styled.ViewArray>
             </>
-          ))}
-        </View>
+          ))
+        ) : (
+          <View
+            style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              alignSelf: 'center',
+              paddingTop: '60%',
+            }}>
+            <Styled.Texts> Você não possui itens no momento!</Styled.Texts>
+            <View style={{height: height, width: width, alignItems: 'center'}}>
+              <ImageBackground
+                source={require(imgt)}
+                style={{height: 100, width: 100}}
+              />
+            </View>
+          </View>
+        )}
       </Styled.Scroll>
     </Styled.Container>
   );

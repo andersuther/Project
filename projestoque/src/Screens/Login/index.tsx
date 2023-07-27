@@ -23,11 +23,12 @@ import auth from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 
 const Login: React.FC = () => {
-  const img5 = '../../images/manman.png';
-  const img6 = '../../images/logot.png';
+  const img5 = '../../images/teste1.jpg';
+
+  const img6 = '../../images/logonew.png';
 
   const {navigate, goBack} = useNavigation<any>();
-  const {height} = Dimensions.get('window');
+  const {height, width} = Dimensions.get('window');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [user, setUser] = useState('');
@@ -93,7 +94,7 @@ const Login: React.FC = () => {
           <Styled.Viewlogo>
             <Image
               source={require(img6)}
-              style={{width: '48%', height: '53%'}}
+              style={{width: '70%', height: '65%'}}
             />
             {loading && <Spinner color={'#203de6'} size={50} />}
           </Styled.Viewlogo>

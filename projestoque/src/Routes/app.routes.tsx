@@ -11,16 +11,16 @@ const AppStack = createNativeStackNavigator();
 function AppRoutes() {
   return (
     <AppStack.Navigator>
-      <AppStack.Screen
+      {/* <AppStack.Screen
         name="Home"
         component={Home}
         options={{headerShown: false}}
-      />
-      <AppStack.Screen
+      /> */}
+      {/* <AppStack.Screen
         name="Register"
         component={Register}
         options={{headerShown: false}}
-      />
+      /> */}
       <AppStack.Screen
         name="Login"
         component={Login}
