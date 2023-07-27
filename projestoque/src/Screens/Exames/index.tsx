@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import {Alert, LogBox} from 'react-native';
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
 import {BotaoHome} from '../../Components/Button/index';
 import * as Styled from './styles';
 import RadioIcon from 'react-native-vector-icons/dist/MaterialCommunityIcons';
-import {Input, Modal} from 'native-base';
+import {Modal} from 'native-base';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 import DatePicker from 'react-native-date-picker';
 import {TextInput} from '../../Components/textInput/TextInput';
@@ -189,11 +189,7 @@ const Dashboard: React.FC = () => {
           </TouchableOpacity>
         </Styled.ViewBts>
 
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-evenly',
-          }}>
+        <Styled.ViewBtsAdd>
           <BotaoHome
             width="36%"
             color="red"
@@ -212,39 +208,19 @@ const Dashboard: React.FC = () => {
             texto="14px"
             onPress={() => setModalVisible(true)}
           />
-        </View>
+        </Styled.ViewBtsAdd>
       </View>
       <Styled.Scroll>
         <View>
           {useList?.map(item => (
             <>
               <Styled.ViewArray>
-                <View
-                  style={{
-                    alignSelf: 'flex-end',
-                    position: 'absolute',
-                    width: 28,
-                    height: 28,
-                  }}>
-                  <TouchableOpacity
-                    style={{width: 28, height: 28}}
-                    onPress={() => deleteItem(item.id)}>
+                <Styled.ViewTrash>
+                  <Styled.BtTrash onPress={() => deleteItem(item.id)}>
                     <RadioIcon name="trash-can" size={25} color={'#f50606'} />
-                  </TouchableOpacity>
-                </View>
-                {/* <Animatable.Text
-                  animation="slideInDown"
-                  iterationCount="infinite"
-                  direction="alternate">
-                  Up and down you go
-                </Animatable.Text>
-                <Animatable.Text
-                  animation="pulse"
-                  easing="ease-out"
-                  iterationCount="infinite"
-                  style={{textAlign: 'center'}}>
-                  ❤️
-                </Animatable.Text> */}
+                  </Styled.BtTrash>
+                </Styled.ViewTrash>
+
                 <Styled.Texts>
                   Nome:<Styled.TextAr> {item?.nome}</Styled.TextAr>
                 </Styled.Texts>

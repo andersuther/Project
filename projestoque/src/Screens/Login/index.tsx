@@ -166,13 +166,6 @@ const Login: React.FC = () => {
                 <TouchableOpacity onPress={() => navigate('Cadastro')}>
                   <Styled.TxtCrie>Crie sua conta!</Styled.TxtCrie>
                 </TouchableOpacity>
-                {/* {user.length > 0 ? (
-                  <TouchableOpacity onPress={() => logout()}>
-                    <Styled.TxtSair>Sair</Styled.TxtSair>
-                  </TouchableOpacity>
-                ) : (
-                  <></>
-                )} */}
               </Styled.ViewBtConta>
             </>
           )}
