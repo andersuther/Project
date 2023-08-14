@@ -249,13 +249,7 @@ const Home: React.FC = () => {
             </>
           ))
         ) : (
-          <View
-            style={{
-              alignItems: 'center',
-              justifyContent: 'center',
-              alignSelf: 'center',
-              paddingTop: '50%',
-            }}>
+          <Styled.ViewSemItem>
             <Styled.Texts> Você não possui itens no momento!</Styled.Texts>
             <View style={{height: '8%', width: width, alignItems: 'center'}}>
               <ImageBackground
@@ -263,7 +257,7 @@ const Home: React.FC = () => {
                 style={{height: 100, width: 100}}
               />
             </View>
-          </View>
+          </Styled.ViewSemItem>
         )}
       </Styled.Scroll>
     </Styled.Container>

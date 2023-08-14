@@ -18,6 +18,12 @@ export const ViewText = styled.View`
   justify-content: center;
   position: relative;
 `;
+export const ViewSemItem = styled.View`
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  padding-top: 50%;
+`;
 export const ViewBtsAdd = styled.View`
   flex-direction: row;
   justify-content: space-evenly;
