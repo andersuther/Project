@@ -1,245 +1,273 @@
 import React, {useState, useEffect} from 'react';
-import {ImageBackground, TouchableOpacity, View, FlatList} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {Alert, LogBox} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ImageBackground,
+  Dimensions,
+} from 'react-native';
 import {BotaoHome} from '../../Components/Button/index';
 import * as Styled from './styles';
-import Icone from 'react-native-vector-icons/dist/Ionicons';
 import RadioIcon from 'react-native-vector-icons/dist/MaterialCommunityIcons';
-import {Radio, Icon, Modal} from 'native-base';
-import firebase from '../../firebaseConnetion';
+import {Modal} from 'native-base';
+import Icon from 'react-native-vector-icons/dist/Ionicons';
+import DatePicker from 'react-native-date-picker';
+import {TextInput} from '../../Components/textInput/TextInput';
+import moment from 'moment';
+import {getList, createIten, DeleteItens} from './api';
 
-import api from '../../Services/api';
+// Ignore log notification by message
+LogBox.ignoreLogs(['Warning: ...']);
 
-export default function Home() {
-  const img2 = '../../images/wites.jpg';
-  const [text, onChangeText] = useState('');
-  const [text2, onChangeText2] = useState('');
-  const [radioValue, setRadioValue] = useState('');
+//Ignore all log notifications
+LogBox.ignoreAllLogs();
+
+const Home: React.FC = () => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [nome, setNome] = useState('Carregando ..');
-  const [email, setEmail] = useState('Carregando..');
-  const [usuarios, setUsuarios] = useState([]);
+  const [useList, setUseList] = useState<any>([]);
+  const [initialData, setInitialData] = useState([]);
+  const {height, width} = Dimensions.get('window');
 
-  const tamanho = 350;
-  const tamanhoIcon = 90;
-  const tamanhoPorcent = (tamanhoIcon * tamanho) / 100;
+  const [date, setDate] = useState(new Date());
+  const [open, setOpen] = useState(false);
+  const [nome, setNome] = useState('');
+  const [valor, setValor] = useState('');
+  const [complemento, setComplemento] = useState('');
 
-  const navigation = useNavigation();
+  const imgt = '../../images/saddog2.png';
 
   useEffect(() => {
-    getApi();
+    getArray();
   }, []);
 
-  // const teste2023 = () => {
-  //   fetch('http://192.168.1.2:3000/itens-list')
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       // Process the data returned from the server
-  //       console.tron.log('teste2', data);
-  //       console.tron.log('teste!!', teste2023);
-  //     })
-  //     .catch(error => {
-  //       // Handle any errors that occur during the request
-  //       console.tron.log(error);
-  //     });
-  // };
+  const getArray = async () => {
+    const array = await getList();
+    setUseList(array?.allItens);
+    setInitialData(array?.allItens);
+    console.tron.log('teste de log*********', array);
+  };
 
-  const getApi = async () => {
-    console.tron.log('teste de log');
-    const t = await api.get('/itens-list');
-    console.tron.log('log*****************', t);
+  const create = async () => {
+    const obj = {
+      nome,
+      valor: valor.length > 0 ? 'R$ ' + valor : '',
+      complemento,
+    };
+    setNome('');
+    setValor('');
+    setComplemento('');
+    createIten(obj, getArray, Alert);
+    setModalVisible(false);
+  };
+
+  const filterList = data => {
+    const novaData = moment(data).format('DD-MM-YYYY');
+
+    const Arrayfiltrado = initialData.filter(
+      item => moment(item.created_at).format('DD-MM-YYYY') === novaData,
+    );
+    setUseList(Arrayfiltrado);
+    if (Arrayfiltrado.length < 1) {
+    }
+  };
+
+  const clearFilter = () => {
+    setUseList(initialData);
+  };
+
+  const deleteItem = async id => {
+    await DeleteItens(id);
+    getArray();
   };
 
   return (
     <Styled.Container>
-      {/* <Modal isOpen={modalVisible} onClose={() => setModalVisible(false)}>
-        <View
-          style={{
-            height: '90%',
-            width: '85%',
-            backgroundColor: '#81a1a7',
-            borderRadius: 2,
-            alignSelf: 'flex-start',
-            alignItems: 'flex-end',
-            paddingRight: '2%',
-          }}>
-          <TouchableOpacity
-            onPress={() => setModalVisible(false)}
-            style={{
-              width: tamanho,
-              height: tamanho,
-              borderRadius: 50,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <View
-              style={{
-                position: 'absolute',
-                backgroundColor: '#030303',
-                width: '52%',
-                height: '40%',
-                zIndex: -2,
-                borderRadius: tamanho,
-              }}></View>
-            <View
-              style={{
-                position: 'absolute',
-                backgroundColor: '#9e1616',
-                width: '10%',
-                height: '10%',
-                zIndex: -1,
-                right: '58%',
-                top: '50%',
-                borderRadius: tamanho,
-              }}></View>
-            <View
-              style={{
-                position: 'absolute',
-                backgroundColor: '#ffffff',
-                width: '17%',
-                height: '19%',
-                zIndex: -2,
-                right: '55%',
-                top: '45%',
-                borderRadius: tamanho,
-              }}></View>
-            <View
-              style={{
-                position: 'absolute',
-                backgroundColor: '#9e1616',
-                width: '10%',
-                height: '10%',
-                zIndex: -1,
-                left: '58%',
-                top: '50%',
-                borderRadius: tamanho,
-              }}></View>
-            <View
-              style={{
-                position: 'absolute',
-                backgroundColor: '#ffffff',
-                width: '17%',
-                height: '19%',
-                zIndex: -2,
-                left: '55%',
-                top: '45%',
-                borderRadius: tamanho,
-              }}></View>
-            <View
-              style={{
-                position: 'absolute',
-                backgroundColor: '#fdf3f3',
-                width: '20%',
-                height: '10%',
-                zIndex: -1,
-                left: '40%',
-                bottom: '20%',
-                borderRadius: tamanho,
-              }}></View>
-            <RadioIcon name="alien" size={tamanhoPorcent} color={'#3dd41e'} /> */}
-      {/* </TouchableOpacity> */}
-      {/* </View> */}
-      {/* </Modal> */}
-      <ImageBackground source={require(img2)} style={{flex: 1, width: '100%'}}>
-        <Styled.ViewTexts>
-          <Styled.TextWel>Welcome</Styled.TextWel>
+      <View style={{backgroundColor: '#f69c1a'}}>
+        <Styled.VTextExame>
+          <Styled.TextItem>MEUS ITEMS</Styled.TextItem>
+        </Styled.VTextExame>
 
-          <Styled.TextSub>
-            It is very important to be patient, to be followed by the customer.
-            Until the author is but the price of mourninlg. {'\n'}
-            {/* {'\n'} Ola {nome} , Idade {email} */}
-          </Styled.TextSub>
-        </Styled.ViewTexts>
-        <Styled.ViewInput>
+        <Styled.ViewBts>
+          <TouchableOpacity onPress={() => setOpen(true)}>
+            <Styled.DataBt>
+              <Icon name="calendar" size={20} color="#000" />
+
+              <DatePicker
+                modal
+                minimumDate={new Date('2000-01-31')}
+                maximumDate={new Date('2050-12-31')}
+                mode="date"
+                title={'Itens por data'}
+                open={open}
+                date={date}
+                onConfirm={date => {
+                  setOpen(false);
+                  setDate(date);
+                  filterList(date);
+                }}
+                onCancel={() => {
+                  setOpen(false);
+                  clearFilter();
+                }}
+              />
+              <Text style={{color: '#fff'}}>Data</Text>
+            </Styled.DataBt>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => {}}>
+            <Styled.StatusBt>
+              <Text style={{color: '#fff'}}>Status</Text>
+              <Icon name="caret-down" size={19} color="#000" />
+
+              <Modal
+                isOpen={modalVisible}
+                onClose={() => setModalVisible(false)}>
+                <View
+                  style={{
+                    height: '50%',
+                    width: '80%',
+                    backgroundColor: '#ffffff',
+                    borderRadius: 2,
+                    alignSelf: 'center',
+                    alignItems: 'flex-end',
+                    paddingRight: '2%',
+                  }}>
+                  <TouchableOpacity
+                    onPress={() => setModalVisible(false)}
+                    style={{
+                      width: 50,
+                      height: 50,
+                      borderRadius: 50,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}>
+                    <RadioIcon name="close" size={25} color={'#000'} />
+                  </TouchableOpacity>
+                  <View
+                    style={{
+                      justifyContent: 'center',
+                      width: '100%',
+                      alignItems: 'center',
+                    }}>
+                    <Text>CADASTRAR NOVO ITEM</Text>
+                  </View>
+
+                  <View
+                    style={{
+                      alignItems: 'center',
+                      width: '100%',
+                      margin: 2,
+                      padding: 5,
+                      paddingTop: 20,
+                    }}>
+                    <TextInput
+                      onChangeText={text => setNome(text)}
+                      fontSize={18}
+                      placeholder="Nome"
+                    />
+                    <TextInput
+                      onChangeText={text => setValor(text)}
+                      keyboardType={'numeric'}
+                      fontSize={18}
+                      value={valor}
+                      placeholder="Valor"
+                    />
+                    <TextInput
+                      onChangeText={text => setComplemento(text)}
+                      fontSize={18}
+                      placeholder="Complemento"
+                    />
+                    <View style={{paddingTop: 15}}>
+                      <BotaoHome
+                        width="35%"
+                        color="#08c512f4"
+                        height="30px"
+                        title="Cadastrar"
+                        radius="10px"
+                        texto="14px"
+                        onPress={() => create()}
+                      />
+                    </View>
+                  </View>
+                </View>
+              </Modal>
+            </Styled.StatusBt>
+          </TouchableOpacity>
+        </Styled.ViewBts>
+
+        <Styled.ViewBtsAdd>
+          <BotaoHome
+            width="36%"
+            color="red"
+            height="30px"
+            title="Limpar filtro"
+            radius="10px"
+            texto="14px"
+            onPress={() => clearFilter()}
+          />
+          <BotaoHome
+            width="36%"
+            color="#08c512f4"
+            height="30px"
+            title="Adicionar Item"
+            radius="10px"
+            texto="14px"
+            onPress={() => setModalVisible(true)}
+          />
+        </Styled.ViewBtsAdd>
+      </View>
+      <Styled.Scroll>
+        {useList?.length > 0 ? (
+          useList?.map(item => (
+            <>
+              <Styled.ViewArray>
+                <Styled.ViewTrash>
+                  <Styled.BtTrash onPress={() => deleteItem(item.id)}>
+                    <RadioIcon name="trash-can" size={25} color={'#f50606'} />
+                  </Styled.BtTrash>
+                </Styled.ViewTrash>
+
+                <Styled.Texts>
+                  Nome:<Styled.TextAr> {item?.nome}</Styled.TextAr>
+                </Styled.Texts>
+                <Styled.Texts>
+                  Valor:<Styled.TextAr> {item?.valor}</Styled.TextAr>
+                </Styled.Texts>
+                <Styled.Texts>
+                  Complemento:
+                  <Styled.TextAr> {item?.complemento}</Styled.TextAr>
+                </Styled.Texts>
+                <Styled.Texts>
+                  Data:{' '}
+                  <Styled.TextAr>
+                    {' '}
+                    {moment(item?.created_at).format('DD-MM-YYYY')}
+                  </Styled.TextAr>
+                </Styled.Texts>
+              </Styled.ViewArray>
+            </>
+          ))
+        ) : (
           <View
             style={{
-              width: '100%',
-              justifyContent: 'center',
               alignItems: 'center',
-              flexDirection: 'row',
+              justifyContent: 'center',
+              alignSelf: 'center',
+              paddingTop: '50%',
             }}>
-            <TouchableOpacity onPress={() => {}}>
-              <Icone
-                name="arrow-forward-circle-outline"
-                size={30}
-                color="#05f7f7fd"
+            <Styled.Texts> Você não possui itens no momento!</Styled.Texts>
+            <View style={{height: '8%', width: width, alignItems: 'center'}}>
+              <ImageBackground
+                source={require(imgt)}
+                style={{height: 100, width: 100}}
               />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => setModalVisible(true)}>
-              <Icone
-                name="arrow-forward-circle-outline"
-                size={30}
-                color="#900"
-              />
-            </TouchableOpacity>
+            </View>
           </View>
-          <Radio.Group
-            defaultValue="1"
-            onChange={v => setRadioValue(v)}
-            size="lg"
-            name="exampleGroup"
-            accessibilityLabel="pick a choice">
-            <Radio
-              size={radioValue === '1' ? 38 : 30}
-              backgroundColor={radioValue === '1' ? '#7f1' : '#fff'}
-              _text={{
-                mx: 2,
-              }}
-              colorScheme="green"
-              value="1"
-              icon={<Icon as={<RadioIcon name="alien" />} size={34} />}
-              my={1}>
-              Alien
-            </Radio>
-            <Radio
-              size={radioValue === '2' ? 38 : 30}
-              backgroundColor={radioValue === '2' ? '#eba872' : '#fff'}
-              _text={{
-                mx: 2,
-              }}
-              colorScheme="red"
-              value="2"
-              icon={<Icon as={<RadioIcon name="fire" />} size={34} />}
-              my={1}>
-              Fire
-            </Radio>
-            <Radio
-              size={radioValue === '3' ? 38 : 30}
-              colorScheme="warning"
-              backgroundColor={radioValue === '3' ? '#c6c932' : '#fff'}
-              _text={{
-                mx: 2,
-              }}
-              value="3"
-              icon={
-                <Icon
-                  as={<RadioIcon name="lightning-bolt" />}
-                  size={radioValue === '3' ? 28 : 34}
-                />
-              }
-              my={1}>
-              Storm
-            </Radio>
-          </Radio.Group>
-          <Styled.Input
-            placeholderTextColor="#000000"
-            onChangeText={onChangeText}
-            value={text}
-            placeholder="Email Adress"></Styled.Input>
-          <Styled.Input
-            placeholderTextColor="#000000"
-            onChangeText={onChangeText2}
-            value={text2}
-            placeholder="* * * * *"></Styled.Input>
-        </Styled.ViewInput>
-        <BotaoHome
-          title={'Login'}
-          onPress={() => navigation.navigate('Login')}
-          color="#00ff6a"
-          width="100%"
-          height="35px"
-        />
-      </ImageBackground>
+        )}
+      </Styled.Scroll>
     </Styled.Container>
   );
-}
+};
+
+export default Home;

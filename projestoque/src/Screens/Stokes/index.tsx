@@ -3,7 +3,7 @@ import {ImageBackground, Text, View} from 'react-native';
 import {TextInput, Button} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-export default function Register() {
+export default function Stokes() {
   const [text3, onChangeText3] = React.useState('');
   const [text4, onChangeText4] = React.useState('');
 

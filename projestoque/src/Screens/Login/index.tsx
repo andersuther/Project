@@ -52,7 +52,7 @@ const Login: React.FC = () => {
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 
     // Sign-in the user with the credential
-    navigate('Exames');
+    navigate('Home');
     setIsLoanding(false);
     return auth().signInWithCredential(googleCredential);
   }
@@ -65,21 +65,21 @@ const Login: React.FC = () => {
     await auth()
       .signInWithEmailAndPassword(email, password)
       .then(value => {
-        alert('Bem-vindo:' + value?.user?.email);
+        Alert.alert('Bem-vindo:' + value?.user?.email);
         setEmail('');
         setPassword('');
-        navigate('Exames');
+        navigate('Home');
       })
       .catch(error => {
         if (error.code === 'auth/wrong-password') {
-          alert('Senha invalida');
+          Alert.alert('Senha invalida');
           return;
         }
         if (error.code === 'auth/invald-password') {
-          alert('Email invalido');
+          Alert.alert('Email invalido');
           return;
         } else {
-          alert('Ops algo deu errado!');
+          Alert.alert('Ops algo deu errado!');
           return;
         }
       });
