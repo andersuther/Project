@@ -3,7 +3,7 @@ import axios, {AxiosRequestConfig, AxiosError, AxiosResponse} from 'axios';
 //const baseURL = process.env.REACT_APP_PROD_URL;
 
 const api = axios.create({
-  baseURL: 'http://192.168.1.5:3000',
+  baseURL: 'http://192.168.1.2:3000',
 });
 
 api.interceptors.request.use(
