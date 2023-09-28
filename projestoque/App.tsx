@@ -1,12 +1,22 @@
 import React from 'react';
-import { ImageBackground, Text, View } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import Routes from './src/Routes';
+import {StatusBar} from 'react-native';
+import {NativeBaseProvider} from 'native-base';
 
-// import { Container } from './styles';
-
-const projestoque: React.FC = () => {
-  return <View style={{flex:1}}>
-    <Text>Projeto Estoque</Text>
-  </View>;
+if (__DEV__) {
+  import('./src/config/reactotronConfig').then(() =>
+    console.tron.log('Reactotron Initialized'),
+  );
 }
 
-export default projestoque;
+export default function App() {
+  return (
+    <NavigationContainer>
+      <NativeBaseProvider>
+        <StatusBar backgroundColor="#131313" />
+        <Routes />
+      </NativeBaseProvider>
+    </NavigationContainer>
+  );
+}
