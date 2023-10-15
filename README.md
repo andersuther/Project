@@ -19,19 +19,20 @@ Execute o seguinte comando para instalar as dependências:
 Certifique-se de ter um projeto Firebase configurado. 
 Configure as credenciais do Firebase no projeto.
 Configure a autenticação no Firebase para permitir login via e-mail e conta do Google.
-Uso
+
+### Uso
+
 Inicie o emulador Android.
 
 ### Execute o projeto:
 
-* npx react-native run-android ou yarn android
-aplicativo abrirá no emulador.
+* npx react-native run-android ou yarn android e o aplicativo abrirá no emulador.
 
-Na tela de login, você pode fazer login com um e-mail e senha (o usuário é criado automaticamente se não existir) ou com uma conta do Google.
+Na tela de login, você pode fazer login com um e-mail e senha ( o usuário é criado automaticamente se não existir ) ou com uma conta do Google.
 
 Após o login, você será redirecionado para a tela de itens.
 
-Caso a api estáeja desligada , receberá essa mensagem!
+Caso a api esteja desligada , receberá essa mensagem!
 
 <div align="center">
     <img src="https://github.com/andersuther/Project/assets/108153983/8be0e172-351b-4cfe-b75f-bb71d99ed416)" width="400px" />
