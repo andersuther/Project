@@ -31,7 +31,7 @@ Na tela de login, você pode fazer login com um e-mail e senha (o usuário é cr
 
 Após o login, você será redirecionado para a tela de itens.
 
-Caso a api está desligada , receberá essa mensagem!
+Caso a api estáeja desligada , receberá essa mensagem!
 
 <div align="center">
     <img src="https://github.com/andersuther/Project/assets/108153983/8be0e172-351b-4cfe-b75f-bb71d99ed416)" width="400px" />
