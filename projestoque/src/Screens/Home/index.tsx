@@ -24,9 +24,9 @@ LogBox.ignoreLogs(['Warning: ...']);
 LogBox.ignoreAllLogs();
 
 const Home: React.FC = () => {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState<any>(false);
   const [useList, setUseList] = useState<any>([]);
-  const [initialData, setInitialData] = useState([]);
+  const [initialData, setInitialData] = useState<any>([]);
   const {height, width} = Dimensions.get('window');
 
   const [date, setDate] = useState(new Date());

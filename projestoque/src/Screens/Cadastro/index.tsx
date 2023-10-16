@@ -21,6 +21,10 @@ export default function Cadastro() {
   const navigation = useNavigation();
 
   async function cadastro() {
+    if (!email || !password) {
+      Alert.alert('Todos os campos são obrigatórios.');
+      return;
+    }
     await auth()
       .createUserWithEmailAndPassword(email, password)
       .then(value => {
