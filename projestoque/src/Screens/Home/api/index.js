@@ -12,7 +12,7 @@ export const getList = async () => {
   }
 };
 
-export const DeleteItens = async (id, nome) => {
+export const DeleteItens = async id => {
   try {
     const list = await api.delete(`/itens/${id}`);
     Snackbar.show({

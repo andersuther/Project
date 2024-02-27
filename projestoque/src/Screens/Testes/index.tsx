@@ -29,19 +29,19 @@ export default function Testes() {
     getApi();
   }, []);
 
-  // const teste2023 = () => {
-  //   fetch('http://192.168.1.2:3000/itens-list')
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       // Process the data returned from the server
-  //       console.tron.log('teste2', data);
-  //       console.tron.log('teste!!', teste2023);
-  //     })
-  //     .catch(error => {
-  //       // Handle any errors that occur during the request
-  //       console.tron.log(error);
-  //     });
-  // };
+  const teste2023 = () => {
+    fetch('http://192.168.1.2:3000/itens-list')
+      .then(response => response.json())
+      .then(data => {
+        // Process the data returned from the server
+        console.tron.log('teste2', data);
+        console.tron.log('teste!!', teste2023);
+      })
+      .catch(error => {
+        // Handle any errors that occur during the request
+        console.tron.log(error);
+      });
+  };
 
   const getApi = async () => {
     console.tron.log('teste de log');

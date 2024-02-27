@@ -61,11 +61,11 @@ const Home: React.FC = () => {
     setModalVisible(false);
   };
 
-  const filterList = data => {
+  const filterList = (data: moment.MomentInput) => {
     const novaData = moment(data).format('DD-MM-YYYY');
 
     const Arrayfiltrado = initialData.filter(
-      item => moment(item.created_at).format('DD-MM-YYYY') === novaData,
+      (      item: { created_at: moment.MomentInput; }) => moment(item.created_at).format('DD-MM-YYYY') === novaData,
     );
     setUseList(Arrayfiltrado);
     if (Arrayfiltrado.length < 1) {
@@ -76,7 +76,7 @@ const Home: React.FC = () => {
     setUseList(initialData);
   };
 
-  const deleteItem = async id => {
+  const deleteItem = async (id: any) => {
     await DeleteItens(id);
     getArray();
   };
@@ -150,7 +150,7 @@ const Home: React.FC = () => {
                       width: '100%',
                       alignItems: 'center',
                     }}>
-                    <Text>CADASTRAR NOVO ITEM</Text>
+                    <Text>SEU NOVO ITEM</Text>
                   </View>
 
                   <View
@@ -219,7 +219,7 @@ const Home: React.FC = () => {
       </View>
       <Styled.Scroll>
         {useList?.length > 0 ? (
-          useList?.map(item => (
+          useList?.map((item: { id: any; nome: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal; valor: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal; complemento: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal; created_at: moment.MomentInput; }) => (
             <>
               <Styled.ViewArray>
                 <Styled.ViewTrash>
